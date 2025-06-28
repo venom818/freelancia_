@@ -1,0 +1,232 @@
+body {
+padding-top: 100px; //body{ padding -top: 100px } use gare par nav bar paxadi vitra ko paragraph letter haru lukdaina balki nav bar ko tala bata paragraph start hunxa
+width: 100%;
+.navbar{
+display:flex;
+flex-direction: column;
+align-items: center;
+background-color: rgb(18, 155, 114);
+color: #e8e8e8;
+width: 100%;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 10;
+transition: 0.5s all ease;
+
+&.active{
+    background-color: #fff9f9;
+    color: rgb(1, 1, 1);
+}
+
+    .container{
+        width: 1400px;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0px;
+        .logo{
+            font-size:30px ;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            letter-spacing: 1.5px;
+            transition: all  0.3s ease;
+            align-items: center;
+            display:flex;
+            gap: 4px;
+
+          &:hover{
+            transform: scale(1.04) ;
+            filter: brightness(1.6);
+          }
+          .link{
+            display: flex;
+            align-items: center;
+            gap: 0;
+            text-decoration: none;
+            color: inherit;
+            h1{
+              transform: translateY(5px) translateX(-10px);
+            }
+          }
+            img{
+              width: auto;
+              max-width: 50px;
+               object-fit: contain;
+               margin-right: 0px;
+            }   
+        }
+        
+        .links{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 500;
+            font-family: Helvetica, Arial, Roboto, Poppins;
+            > span{
+              cursor: pointer;
+              font-size: 18px;
+              transition: all 0.3s ease;
+            padding:8px 0 ;
+
+            &::after{
+              content: '';
+              position:absolute;
+              width: 0;
+              height: 2px;
+              bottom: 0;
+              left: 50%;
+              background-color: #ffffff;
+              transition: all 0.3s ease;
+              transform: translate(-50%) ;
+            }
+            &:hover{
+              color: rgb(83, 237, 101);
+              transform: translate(-1px) ;
+
+              &::after{
+                width: 100%;
+              }
+            }
+            }
+          
+            .link{
+             font-size: 18px;
+              font-weight: 500;
+             
+              &:hover{
+                color: rgb(0, 0, 0);
+                transform: translate(-1px); 
+
+               
+              }
+            }
+            .user{
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                cursor: pointer;
+                position: relative;
+                padding: 8px 16px;
+                border-radius: 50px;
+                transition:all 0.3s ease ;
+                &:hover {
+                transform: translate(-2px);
+                box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+                }
+                img{
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50px;
+                    object-fit: cover;
+                    transition: all 0.3s ease;
+
+                    &:hover{
+                        transform: scale(1.1);
+                        box-shadow: 0 8px 25px rgba(194, 58, 8, 0.15);
+                    }
+                }
+               
+
+                .options{
+                    position:absolute;
+                    top: 50px;
+                    right: 0;
+                    padding: 20px;
+                    background-color: rgb(255, 255, 255);
+                    border-radius: 15px;
+                    border: 1px solid lightgray;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    color: rgb(70, 66, 66);
+                    width: 200px;
+                    font-weight: 300;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);  
+                  
+                    z-index: 1000;  
+                      .link, span{
+                        &:hover{
+                          color: rgb(45, 189, 45);
+                          transform: translate(1px) ;
+                          padding-left: 0px;
+                        }
+                        &:last-child{
+                          color: rgb(182, 81, 81);
+
+                          &:hover{
+                        
+                            color: #f43100;
+                          }
+                        }
+                      }
+                }
+            }
+
+            
+
+            button{
+                color: rgb(0, 0, 0);
+                padding: 5px 20px;
+                border-radius: 15px;
+                cursor: pointer;
+                background-color: rgb(242, 240, 240);
+                font-weight: 500;
+                transition: all 0.3s ease;
+              //  box-shadow: 0 2px 10px rgb(115, 172, 225);
+                &:hover{
+           background-color: #47d534;
+
+           
+                }
+                &:active{
+
+                  transform:translateY(10) ;
+                  box-shadow: 0 4px 10px rgb(130, 210, 89);
+                }
+            }
+        }
+
+    }
+    hr{
+        
+       width:100% ;
+       height: 0;
+       border: 0.5 solid white;
+        background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+    }
+
+    .menu {
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between; /* Center the menu items */
+    gap: 20px;
+    padding: 10px 0px; 
+    font-weight: 300;
+     background-color: #ffffff;
+    color: rgb(23, 11, 11);
+    font-family: Helvetica, Arial, Roboto, Poppins;
+   
+    .link{
+      color: #676f69;
+      padding: 1px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+   
+
+
+      &:hover{
+        color: rgb(29, 179, 54);
+        transform: translateY(-2px);
+        box-shadow:0 4px 15px rgba(255, 107, 53, 0.15);  
+      }
+    }
+   }
+ }
+}
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+@tailwind all;
+
+body {
+  font-family: "Inter", sans-serif;
+  overflow-y:scroll ;
+}
