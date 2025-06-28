@@ -1,4 +1,3 @@
-"use client"
 
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
@@ -9,7 +8,6 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
-import { freelancerProfile } from "@/api/auth"
 import {
   MapPin,
   Star,
@@ -31,8 +29,7 @@ import {
 import "./FreelancerProfile.scss"
 
 function FreelancerProfile() {
-    
-  const { id } = useParams();
+  const { id } = useParams()
   const navigate = useNavigate()
   const { showToast } = useToast()
   const [freelancer, setFreelancer] = useState(null)
@@ -61,11 +58,7 @@ function FreelancerProfile() {
 
   // Mock data - replace with actual API call
   useEffect(() => {
-    const loadFreelancerData = async () => {
-      try {
-        const profile = await freelancerProfile();
-        console.log("freelancer profiel", profile)
-
+    const loadFreelancerData = () => {
       // Check if viewing own profile
       const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}")
       const isOwn = !id || currentUser.id?.toString() === id
@@ -87,7 +80,7 @@ function FreelancerProfile() {
           ? currentUser.bio ||
             "Passionate Graphics and UI/UX designer with 8+ years of experience in Graphics Designing and 3+ years in UI/UX."
           : "Passionate Graphics and UI/UX designer with 8+ years of experience in Graphics Designing and 3+ years in UI/UX.I specialize in Illustrator, Photoshop, Adobe XD.",
-        profilePicture: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+        profilePicture: "https://i.pinimg.com/1200x/2f/ca/9b/2fca9b3c4babda4c845ac68f084fdde9.jpg",
         hourlyRate: isOwn ? currentUser.hourlyRate || 75 : 75,
         rating: 4.9,
         totalReviews: 127,
@@ -125,8 +118,8 @@ function FreelancerProfile() {
         recentProjects: [
           {
             id: 1,
-            title: "E-commerce Platform Redesign",
-            client: "TechCorp Inc.",
+            title: "Yoga App Design",
+            client: "Forseight Technologies",
             budget: "$5,000",
             status: "Completed",
             rating: 5,
@@ -136,7 +129,7 @@ function FreelancerProfile() {
           {
             id: 2,
             title: "Mobile App Development",
-            client: "StartupXYZ",
+            client: "Crown Designs",
             budget: "$8,500",
             status: "In Progress",
             completedDate: null,
@@ -145,7 +138,7 @@ function FreelancerProfile() {
           {
             id: 3,
             title: "API Integration Project",
-            client: "DataFlow Solutions",
+            client: "SlashPlus",
             budget: "$3,200",
             status: "Completed",
             rating: 4.8,
@@ -157,8 +150,8 @@ function FreelancerProfile() {
         acceptedProposals: [
           {
             id: 1,
-            jobTitle: "SaaS Dashboard Development",
-            client: "CloudTech Solutions",
+            jobTitle: "Web-Design",
+            client: "Makura Creations",
             budget: "$15,000",
             status: "In Progress",
             startDate: "2024-01-10",
@@ -167,8 +160,8 @@ function FreelancerProfile() {
           },
           {
             id: 2,
-            jobTitle: "API Documentation Portal",
-            client: "DevTools Inc.",
+            jobTitle: "Poster Design",
+            client: "Crown Designs",
             budget: "$6,500",
             status: "Completed",
             startDate: "2023-11-01",
@@ -180,19 +173,19 @@ function FreelancerProfile() {
         reviews: [
           {
             id: 1,
-            client: "Sarah Johnson",
+            client: "Brijesh Pandey",
             rating: 5,
             comment:
-              "Exceptional work! John delivered exactly what we needed and more. Great communication throughout the project.",
-            project: "E-commerce Platform",
+              "Exceptional work! Abin delivered exactly what we needed and more. Great communication throughout the project.",
+            project: "yoga app",
             date: "2024-01-15",
           },
           {
             id: 2,
-            client: "Mike Chen",
+            client: "Niharika Mishra",
             rating: 4.8,
             comment: "Very professional and skilled developer. Would definitely work with again.",
-            project: "API Integration",
+            project: "Poster Design",
             date: "2023-12-20",
           },
         ],
@@ -200,15 +193,7 @@ function FreelancerProfile() {
 
       setFreelancer(mockFreelancer)
       setLoading(false)
-       } catch (error) {
-        console.log(error)
-        const message = error.response?.data?.error || "Not Authenticated";
-        showToast(message, "error");
-        navigate("/");
-      } finally {
-        setLoading(false);
-      }
-    };
+    }
 
     loadFreelancerData()
   }, [id])
@@ -363,9 +348,9 @@ function FreelancerProfile() {
         <div className="profile-content">
           <Tabs defaultValue="overview" className="profile-tabs">
             <TabsList className="tabs-list">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
-              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+              <TabsTrigger className="tabs-trigger" value="overview">Overview</TabsTrigger>
+              <TabsTrigger className="tabs-trigger" value="portfolio">Portfolio</TabsTrigger>
+              <TabsTrigger className="tabs-trigger" value="reviews">Reviews</TabsTrigger>
               {isOwnProfile && (
                 <>
                   <TabsTrigger value="proposals">
@@ -419,14 +404,14 @@ function FreelancerProfile() {
                   </CardHeader>
                   <CardContent>
                     <div className="category-badge">
-                      <Badge variant="outline">{freelancer.category}</Badge>
+                      <Badge className="badge" variant="outline">{freelancer.category}</Badge>
                     </div>
 
                     <div className="skills-section">
                       <h4>Technical Skills</h4>
                       <div className="skills-list">
                         {freelancer.skills.map((skill, index) => (
-                          <Badge key={index} variant="secondary">
+                          <Badge className="badge" key={index} variant="secondary">
                             {skill}
                           </Badge>
                         ))}
@@ -437,7 +422,7 @@ function FreelancerProfile() {
                       <h4>Specializations</h4>
                       <div className="skills-list">
                         {freelancer.specializations.map((spec, index) => (
-                          <Badge key={index} variant="outline">
+                          <Badge className="badge" key={index} variant="outline">
                             {spec}
                           </Badge>
                         ))}
@@ -448,9 +433,9 @@ function FreelancerProfile() {
                       <h4>Languages</h4>
                       <div className="languages-list">
                         {freelancer.languages.map((language, index) => (
-                          <div key={index} className="language-item">
+                          <div  key={index} className="language-item">
                             <Languages className="icon" />
-                            <span>{language}</span>
+                            <span className="language-name">{language}</span>
                           </div>
                         ))}
                       </div>
@@ -458,27 +443,12 @@ function FreelancerProfile() {
                   </CardContent>
                 </Card>
 
-                {/* Certifications */}
-                <Card className="certifications-card">
-                  <CardHeader>
-                    <CardTitle>Certifications</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="certifications-list">
-                      {freelancer.certifications.map((cert, index) => (
-                        <div key={index} className="certification-item">
-                          <Award className="icon" />
-                          <span>{cert}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+
               </div>
             </TabsContent>
 
             <TabsContent value="portfolio" className="tab-content">
-              <Card>
+              <Card className="portfolio-title">
                 <CardHeader>
                   <CardTitle>Portfolio</CardTitle>
                 </CardHeader>
@@ -523,7 +493,7 @@ function FreelancerProfile() {
             </TabsContent>
 
             <TabsContent value="reviews" className="tab-content">
-              <Card>
+              <Card className="client-reviews-container">
                 <CardHeader>
                   <CardTitle>Client Reviews</CardTitle>
                 </CardHeader>
@@ -610,7 +580,7 @@ function FreelancerProfile() {
                                     <span>Submitted: {new Date(proposal.submittedDate).toLocaleDateString()}</span>
                                   </div>
                                 </div>
-                                {proposal.milestones && (
+                                {proposal.milestones &&(
                                   <div className="milestones">
                                     <h5>Milestones:</h5>
                                     <p>{proposal.milestones}</p>

@@ -1,6 +1,6 @@
 .client-profile-creation {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #f093fb 0%, #0d8653 100%);
   padding: 20px;
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@
 
         .progress-fill {
           height: 100%;
-          background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+          background: linear-gradient(135deg, #f093fb 0%, #0d8653 100%);
           transition: width 0.3s ease;
         }
       }
@@ -71,7 +71,7 @@
           transition: all 0.3s ease;
 
           &.active {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #0d8653 100%);
             color: white;
           }
 
@@ -96,7 +96,7 @@
   .step-form {
     .form-actions {
       .btn-primary {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        background: linear-gradient(135deg, #f093fb 0%, #0d8653 100%);
 
         &:hover:not(:disabled) {
           box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3);
@@ -107,19 +107,19 @@
 
   .skills-container {
     .add-btn {
-      background: #f5576c;
+      background: #0d8653;
 
       &:hover {
-        background: #e74c3c;
+        background:  #04ca78;
       }
     }
   }
 
   .upload-btn {
-    background: #f5576c !important;
+    background:  #0d8653 !important;
 
     &:hover {
-      background: #e74c3c !important;
+      background:  #04ca78 !important;
     }
   }
 }

@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useToast } from "../../../hooks/useToast"
@@ -64,41 +62,41 @@ function ClientProfile() {
     }))
   }
 
-  // Mock data - replace with actual API call
+  // Get proposal count for a job
+  const getProposalCount = (jobId) => {
+    const allProposals = JSON.parse(localStorage.getItem("proposals") || "[]")
+    return allProposals.filter((proposal) => proposal.jobId === jobId).length
+  }
+
+  // Load client data
   useEffect(() => {
     const loadClientData = () => {
-      // Check if viewing own profile
       const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}")
       const isOwn = !id || currentUser.id?.toString() === id
-
       setIsOwnProfile(isOwn)
 
-      // Load real received proposals for own profile
+      // Load real data for own profile
       const userReceivedProposals = isOwn ? loadReceivedProposals(currentUser.id) : []
       setReceivedProposals(userReceivedProposals)
 
-      // Load posted jobs from localStorage
       const allPostedJobs = JSON.parse(localStorage.getItem("postedJobs") || "[]")
       const userPostedJobs = isOwn ? allPostedJobs.filter((job) => job.clientId === currentUser.id) : []
 
       // Mock client data
       const mockClient = {
         id: isOwn ? currentUser.id : id,
-        firstName: isOwn ? currentUser.firstName || "Abin" : "Abin",
-        lastName: isOwn ? currentUser.lastName || "Gahatraj" : "Gahatraj",
+        firstName: isOwn ? currentUser.firstName || "Thakur" : "Thakur",
+        lastName: isOwn ? currentUser.lastName || "Kunwar" : "Kunwar",
         profession: isOwn ? currentUser.profession || "Product Manager" : "Product Manager",
-        location: isOwn ? currentUser.location || "Butwal-Devinagar" : "Butwal-Devinagar",
+        location: isOwn ? currentUser.location || "New York, NY" : "New York, NY",
         position: isOwn ? currentUser.position || "Senior Product Manager" : "Senior Product Manager",
         profilePicture: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
-
+        
         // Company details
         companyName: isOwn ? currentUser.companyName || "TechCorp Solutions" : "TechCorp Solutions",
-        companyWebsite: isOwn
-          ? currentUser.companyWebsite || "https://techcorp-solutions.com"
-          : "https://techcorp-solutions.com",
+        companyWebsite: isOwn ? currentUser.companyWebsite || "https://techcorp-solutions.com" : "https://techcorp-solutions.com",
         companyDescription: isOwn
-          ? currentUser.companyDescription ||
-            "Leading technology company specializing in innovative software solutions for enterprise clients."
+          ? currentUser.companyDescription || "Leading technology company specializing in innovative software solutions for enterprise clients."
           : "Leading technology company specializing in innovative software solutions for enterprise clients. We focus on digital transformation and cutting-edge technology implementations.",
 
         // Project preferences
@@ -109,14 +107,14 @@ function ClientProfile() {
         preferredCommunication: isOwn ? currentUser.preferredCommunication || "Slack" : "Slack",
         projectFrequency: isOwn ? currentUser.projectFrequency || "Monthly projects" : "Monthly projects",
 
-        // Additional profile data
+        // Statistics
         joinDate: "2021-06-15",
         totalProjectsPosted: isOwn ? userPostedJobs.length : 24,
         completedProjects: isOwn ? userPostedJobs.filter((job) => job.status === "Completed").length : 18,
         averageRating: 4.7,
         totalSpent: "$125,000",
 
-        // Use real posted jobs for own profile
+        // Posted jobs
         postedJobs: isOwn
           ? userPostedJobs.map((job) => ({
               id: job.id,
@@ -134,8 +132,7 @@ function ClientProfile() {
               {
                 id: 1,
                 title: "React Native Mobile App Development",
-                description:
-                  "Looking for an experienced React Native developer to build a cross-platform mobile application for our e-commerce platform.",
+                description: "Looking for an experienced React Native developer to build a cross-platform mobile application for our e-commerce platform.",
                 budget: "$12,000 - $15,000",
                 status: "Active",
                 postedDate: "2024-01-20",
@@ -154,13 +151,7 @@ function ClientProfile() {
     loadClientData()
   }, [id])
 
-  // Get proposal count for a job
-  const getProposalCount = (jobId) => {
-    const allProposals = JSON.parse(localStorage.getItem("proposals") || "[]")
-    return allProposals.filter((proposal) => proposal.jobId === jobId).length
-  }
-
-  // Listen for storage changes to update proposals in real-time
+  // Listen for storage changes
   useEffect(() => {
     const handleStorageChange = () => {
       const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}")
@@ -168,7 +159,6 @@ function ClientProfile() {
         const updatedProposals = loadReceivedProposals(currentUser.id)
         setReceivedProposals(updatedProposals)
 
-        // Update posted jobs proposal counts
         const allPostedJobs = JSON.parse(localStorage.getItem("postedJobs") || "[]")
         const userPostedJobs = allPostedJobs.filter((job) => job.clientId === currentUser.id)
 
@@ -195,110 +185,80 @@ function ClientProfile() {
     return () => window.removeEventListener("storage", handleStorageChange)
   }, [isOwnProfile])
 
-  const handleEditProfile = () => {
-    navigate("/edit-client-profile")
-  }
-
-  const handleMessage = () => {
-    navigate("/messages")
-  }
+  // Event handlers
+  const handleEditProfile = () => navigate("/edit-client-profile")
+  const handleMessage = () => navigate("/messages")
 
   const handleAcceptProposal = (proposalId) => {
     showToast("Proposal accepted!", "success")
-
-    // Update proposal status in localStorage
+    
     const allProposals = JSON.parse(localStorage.getItem("proposals") || "[]")
     const updatedProposals = allProposals.map((proposal) =>
-      proposal.id === proposalId ? { ...proposal, status: "Accepted" } : proposal,
+      proposal.id === proposalId ? { ...proposal, status: "Accepted" } : proposal
     )
     localStorage.setItem("proposals", JSON.stringify(updatedProposals))
 
-    // Update local state
     setReceivedProposals((prev) =>
-      prev.map((proposal) => (proposal.id === proposalId ? { ...proposal, status: "Accepted" } : proposal)),
+      prev.map((proposal) => (proposal.id === proposalId ? { ...proposal, status: "Accepted" } : proposal))
     )
 
-    // Trigger storage event for real-time updates
     window.dispatchEvent(new Event("storage"))
   }
 
   const handleRejectProposal = (proposalId) => {
     showToast("Proposal rejected", "error")
-
-    // Update proposal status in localStorage
+    
     const allProposals = JSON.parse(localStorage.getItem("proposals") || "[]")
     const updatedProposals = allProposals.map((proposal) =>
-      proposal.id === proposalId ? { ...proposal, status: "Rejected" } : proposal,
+      proposal.id === proposalId ? { ...proposal, status: "Rejected" } : proposal
     )
     localStorage.setItem("proposals", JSON.stringify(updatedProposals))
 
-    // Update local state
     setReceivedProposals((prev) =>
-      prev.map((proposal) => (proposal.id === proposalId ? { ...proposal, status: "Rejected" } : proposal)),
+      prev.map((proposal) => (proposal.id === proposalId ? { ...proposal, status: "Rejected" } : proposal))
     )
 
-    // Trigger storage event for real-time updates
     window.dispatchEvent(new Event("storage"))
   }
 
+  // Helper functions
   const getStatusIcon = (status) => {
     switch (status) {
-      case "Accepted":
-        return <CheckCircle className="icon status-accepted" />
-      case "Rejected":
-        return <XCircle className="icon status-rejected" />
-      case "Pending":
-        return <AlertCircle className="icon status-pending" />
-      default:
-        return <Clock className="icon status-review" />
+      case "Accepted": return <CheckCircle className="icon" />
+      case "Rejected": return <XCircle className="icon" />
+      case "Pending": return <AlertCircle className="icon" />
+      default: return <Clock className="icon" />
     }
   }
 
   const getStatusVariant = (status) => {
     switch (status) {
-      case "Accepted":
-        return "default"
-      case "Rejected":
-        return "destructive"
-      case "Pending":
-        return "secondary"
-      default:
-        return "outline"
+      case "Accepted": return "default"
+      case "Rejected": return "destructive"
+      case "Pending": return "secondary"
+      default: return "outline"
     }
   }
 
-  if (loading) {
-    return <div className="loading">Loading profile...</div>
-  }
-
-  if (!client) {
-    return <div className="error">Profile not found</div>
-  }
+  if (loading) return <div className="loading">Loading profile...</div>
+  if (!client) return <div className="error">Profile not found</div>
 
   return (
     <div className="client-profile">
-      <div className="profile-container">
-        {/* Header Section */}
-        <div className="profile-header">
-          <div className="header-background"></div>
+      <div className="container">
+        {/* Header */}
+        <div className="header">
+          <div className="header-bg"></div>
           <div className="header-content">
-            <div className="profile-main">
-              <Avatar className="profile-avatar">
-                <AvatarImage
-                  src={client.profilePicture || "/placeholder.svg"}
-                  alt={`${client.firstName} ${client.lastName}`}
-                />
-                <AvatarFallback>
-                  {client.firstName[0]}
-                  {client.lastName[0]}
-                </AvatarFallback>
+            <div className="profile-info">
+              <Avatar className="avatar">
+                <AvatarImage src={client.profilePicture} alt={`${client.firstName} ${client.lastName}`} />
+                <AvatarFallback>{client.firstName[0]}{client.lastName[0]}</AvatarFallback>
               </Avatar>
 
-              <div className="profile-info">
-                <div className="name-section">
-                  <h1>
-                    {client.firstName} {client.lastName}
-                  </h1>
+              <div className="info">
+                <div className="name">
+                  <h1>{client.firstName} {client.lastName}</h1>
                   <p className="profession">{client.profession}</p>
                   <p className="position">{client.position}</p>
                   <div className="location">
@@ -307,18 +267,13 @@ function ClientProfile() {
                   </div>
                 </div>
 
-                <div className="company-section">
+                <div className="company">
                   <div className="company-info">
                     <Building className="icon" />
                     <div>
                       <h3>{client.companyName}</h3>
                       {client.companyWebsite && (
-                        <a
-                          href={client.companyWebsite}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="website-link"
-                        >
+                        <a href={client.companyWebsite} target="_blank" rel="noopener noreferrer" className="website-link">
                           <Globe className="icon" />
                           Visit Website
                           <ExternalLink className="icon" />
@@ -328,7 +283,7 @@ function ClientProfile() {
                   </div>
                 </div>
 
-                <div className="stats-section">
+                <div className="stats">
                   <div className="stat">
                     <Briefcase className="icon" />
                     <span className="value">{client.totalProjectsPosted}</span>
@@ -353,7 +308,7 @@ function ClientProfile() {
               </div>
             </div>
 
-            <div className="profile-actions">
+            <div className="actions">
               {isOwnProfile ? (
                 <Button onClick={handleEditProfile} className="edit-btn">
                   <Edit className="icon" />
@@ -375,9 +330,9 @@ function ClientProfile() {
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="profile-content">
-          <Tabs defaultValue="overview" className="profile-tabs">
+        {/* Content */}
+        <div className="content">
+          <Tabs defaultValue="overview" className="tabs">
             <TabsList className="tabs-list">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="jobs">Posted Jobs</TabsTrigger>
@@ -391,7 +346,7 @@ function ClientProfile() {
             <TabsContent value="overview" className="tab-content">
               <div className="overview-grid">
                 {/* Company Details */}
-                <Card className="company-card">
+                <Card className="card">
                   <CardHeader>
                     <CardTitle>Company Information</CardTitle>
                   </CardHeader>
@@ -399,12 +354,7 @@ function ClientProfile() {
                     <div className="company-header">
                       <h3>{client.companyName}</h3>
                       {client.companyWebsite && (
-                        <a
-                          href={client.companyWebsite}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="website-button"
-                        >
+                        <a href={client.companyWebsite} target="_blank" rel="noopener noreferrer" className="website-button">
                           <Globe className="icon" />
                           Visit Website
                           <ExternalLink className="icon" />
@@ -413,15 +363,15 @@ function ClientProfile() {
                     </div>
                     <p className="company-description">{client.companyDescription}</p>
 
-                    <div className="details-grid">
-                      <div className="detail-item">
+                    <div className="details">
+                      <div className="detail">
                         <Calendar className="icon" />
                         <div>
                           <span className="label">Member since</span>
                           <span className="value">{new Date(client.joinDate).toLocaleDateString()}</span>
                         </div>
                       </div>
-                      <div className="detail-item">
+                      <div className="detail">
                         <Users className="icon" />
                         <div>
                           <span className="label">Position</span>
@@ -433,41 +383,39 @@ function ClientProfile() {
                 </Card>
 
                 {/* Project Preferences */}
-                <Card className="preferences-card">
+                <Card className="card">
                   <CardHeader>
                     <CardTitle>Project Preferences</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="preference-section">
+                    <div className="preference">
                       <h4>Project Types</h4>
-                      <div className="types-list">
+                      <div className="types">
                         {client.projectTypes.map((type, index) => (
-                          <Badge key={index} variant="secondary">
-                            {type}
-                          </Badge>
+                          <Badge key={index} variant="secondary">{type}</Badge>
                         ))}
                       </div>
                     </div>
 
-                    <div className="preference-section">
+                    <div className="preference">
                       <h4>Budget Range</h4>
-                      <div className="budget-info">
+                      <div className="info">
                         <DollarSign className="icon" />
                         <span>{client.budgetRange}</span>
                       </div>
                     </div>
 
-                    <div className="preference-section">
+                    <div className="preference">
                       <h4>Communication</h4>
-                      <div className="communication-info">
+                      <div className="info">
                         <MessageCircle className="icon" />
                         <span>{client.preferredCommunication}</span>
                       </div>
                     </div>
 
-                    <div className="preference-section">
+                    <div className="preference">
                       <h4>Project Frequency</h4>
-                      <div className="frequency-info">
+                      <div className="info">
                         <Clock className="icon" />
                         <span>{client.projectFrequency}</span>
                       </div>
@@ -476,7 +424,7 @@ function ClientProfile() {
                 </Card>
 
                 {/* Statistics */}
-                <Card className="stats-card">
+                <Card className="card stats-card">
                   <CardHeader>
                     <CardTitle>Statistics</CardTitle>
                   </CardHeader>
@@ -525,170 +473,136 @@ function ClientProfile() {
             </TabsContent>
 
             <TabsContent value="jobs" className="tab-content">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Posted Jobs</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="jobs-list">
-                    {client.postedJobs.map((job) => (
-                      <div key={job.id} className="job-item">
-                        <div className="job-header">
-                          <div className="job-title-section">
-                            <h3>{job.title}</h3>
-                            <Badge
-                              variant={
-                                job.status === "Active"
-                                  ? "default"
-                                  : job.status === "Completed"
-                                    ? "secondary"
-                                    : "outline"
-                              }
-                              className="status-badge"
-                            >
-                              {job.status}
-                            </Badge>
-                          </div>
-                          <div className="job-meta">
-                            <span className="budget">{job.budget}</span>
-                            <span className="proposals">{job.proposals} proposals</span>
-                          </div>
-                        </div>
+              <div className="jobs-list">
+                {client.postedJobs.map((job) => (
+                  <div key={job.id} className="job-item">
+                    <div className="job-header">
+                      <div className="job-title">
+                        <h3>{job.title}</h3>
+                        <Badge variant={job.status === "Active" ? "default" : job.status === "Completed" ? "secondary" : "outline"}>
+                          {job.status}
+                        </Badge>
+                      </div>
+                      <div className="job-meta">
+                        <span className="budget">{job.budget}</span>
+                        <span className="proposals">{job.proposals} proposals</span>
+                      </div>
+                    </div>
 
-                        <p className="job-description">{job.description}</p>
+                    <p className="job-description">{job.description}</p>
 
-                        <div className="job-details">
-                          <div className="skills-section">
-                            <span className="label">Skills:</span>
-                            <div className="skills-list">
-                              {job.skills.map((skill, index) => (
-                                <Badge key={index} variant="outline" size="sm">
-                                  {skill}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="job-info">
-                            <div className="info-item">
-                              <Calendar className="icon" />
-                              <span>Posted: {new Date(job.postedDate).toLocaleDateString()}</span>
-                            </div>
-                            {job.deadline && (
-                              <div className="info-item">
-                                <Clock className="icon" />
-                                <span>Deadline: {new Date(job.deadline).toLocaleDateString()}</span>
-                              </div>
-                            )}
-                          </div>
+                    <div className="job-details">
+                      <div className="skills">
+                        <span className="label">Skills:</span>
+                        <div className="skills-list">
+                          {job.skills.map((skill, index) => (
+                            <Badge key={index} variant="outline" size="sm">{skill}</Badge>
+                          ))}
                         </div>
                       </div>
-                    ))}
+
+                      <div className="job-info">
+                        <div className="info-item">
+                          <Calendar className="icon" />
+                          <span>Posted: {new Date(job.postedDate).toLocaleDateString()}</span>
+                        </div>
+                        {job.deadline && (
+                          <div className="info-item">
+                            <Clock className="icon" />
+                            <span>Deadline: {new Date(job.deadline).toLocaleDateString()}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </TabsContent>
 
             {isOwnProfile && (
               <TabsContent value="proposals" className="tab-content">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Received Proposals ({receivedProposals.length})</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {receivedProposals.length > 0 ? (
-                      <div className="proposals-list">
-                        {receivedProposals.map((proposal) => (
-                          <div key={proposal.id} className="proposal-item">
-                            <div className="proposal-header">
-                              <div className="freelancer-info">
-                                <Avatar className="freelancer-avatar">
-                                  <AvatarImage
-                                    src={proposal.freelancer.avatar || "/placeholder.svg"}
-                                    alt={proposal.freelancer.name}
-                                  />
-                                  <AvatarFallback>{proposal.freelancer.name[0]}</AvatarFallback>
-                                </Avatar>
-                                <div className="freelancer-details">
-                                  <h4>{proposal.freelancer.name}</h4>
-                                  <div className="freelancer-stats">
-                                    <div className="stat">
-                                      <Star className="icon" />
-                                      <span>{proposal.freelancer.rating}</span>
-                                    </div>
-                                    <div className="stat">
-                                      <Briefcase className="icon" />
-                                      <span>{proposal.freelancer.completedProjects} projects</span>
-                                    </div>
-                                    <div className="stat">
-                                      <DollarSign className="icon" />
-                                      <span>${proposal.freelancer.hourlyRate}/hr</span>
-                                    </div>
-                                  </div>
+                {receivedProposals.length > 0 ? (
+                  <div className="proposals-list">
+                    {receivedProposals.map((proposal) => (
+                      <div key={proposal.id} className="proposal-item">
+                        <div className="proposal-header">
+                          <div className="freelancer-info">
+                            <Avatar className="freelancer-avatar">
+                              <AvatarImage src={proposal.freelancer.avatar} alt={proposal.freelancer.name} />
+                              <AvatarFallback>{proposal.freelancer.name[0]}</AvatarFallback>
+                            </Avatar>
+                            <div className="freelancer-details">
+                              <h4>{proposal.freelancer.name}</h4>
+                              <div className="freelancer-stats">
+                                <div className="stat">
+                                  <Star className="icon" />
+                                  <span>{proposal.freelancer.rating}</span>
+                                </div>
+                                <div className="stat">
+                                  <Briefcase className="icon" />
+                                  <span>{proposal.freelancer.completedProjects} projects</span>
+                                </div>
+                                <div className="stat">
+                                  <DollarSign className="icon" />
+                                  <span>${proposal.freelancer.hourlyRate}/hr</span>
                                 </div>
                               </div>
-                              <div className="proposal-status">
-                                {getStatusIcon(proposal.status)}
-                                <Badge variant={getStatusVariant(proposal.status)}>{proposal.status}</Badge>
-                              </div>
-                            </div>
-
-                            <div className="proposal-content">
-                              <h5>For: {proposal.jobTitle}</h5>
-                              <p className="cover-letter">{proposal.coverLetter}</p>
-
-                              <div className="proposal-details">
-                                <div className="detail">
-                                  <span className="label">Proposed Budget:</span>
-                                  <span className="value">{proposal.proposedBudget}</span>
-                                </div>
-                                <div className="detail">
-                                  <span className="label">Timeline:</span>
-                                  <span className="value">{proposal.timeline}</span>
-                                </div>
-                                <div className="detail">
-                                  <span className="label">Submitted:</span>
-                                  <span className="value">{new Date(proposal.submittedDate).toLocaleDateString()}</span>
-                                </div>
-                              </div>
-
-                              {proposal.milestones && (
-                                <div className="milestones">
-                                  <h5>Project Milestones:</h5>
-                                  <p>{proposal.milestones}</p>
-                                </div>
-                              )}
-
-                              {proposal.status === "Pending" && (
-                                <div className="proposal-actions">
-                                  <Button onClick={() => handleAcceptProposal(proposal.id)} className="accept-btn">
-                                    <CheckCircle className="icon" />
-                                    Accept Proposal
-                                  </Button>
-                                  <Button
-                                    onClick={() => handleRejectProposal(proposal.id)}
-                                    variant="outline"
-                                    className="reject-btn"
-                                  >
-                                    <XCircle className="icon" />
-                                    Reject Proposal
-                                  </Button>
-                                </div>
-                              )}
                             </div>
                           </div>
-                        ))}
+                          <div className="proposal-status">
+                            {getStatusIcon(proposal.status)}
+                            <Badge variant={getStatusVariant(proposal.status)}>{proposal.status}</Badge>
+                          </div>
+                        </div>
+
+                        <div className="proposal-content">
+                          <h5>For: {proposal.jobTitle}</h5>
+                          <p className="cover-letter">{proposal.coverLetter}</p>
+
+                          <div className="proposal-details">
+                            <div className="detail">
+                              <span className="label">Proposed Budget:</span>
+                              <span className="value">{proposal.proposedBudget}</span>
+                            </div>
+                            <div className="detail">
+                              <span className="label">Timeline:</span>
+                              <span className="value">{proposal.timeline}</span>
+                            </div>
+                            <div className="detail">
+                              <span className="label">Submitted:</span>
+                              <span className="value">{new Date(proposal.submittedDate).toLocaleDateString()}</span>
+                            </div>
+                          </div>
+
+                          {proposal.milestones && (
+                            <div className="milestones">
+                              <h5>Project Milestones:</h5>
+                              <p>{proposal.milestones}</p>
+                            </div>
+                          )}
+
+                          {proposal.status === "Pending" && (
+                            <div className="proposal-actions">
+                              <Button onClick={() => handleAcceptProposal(proposal.id)} className="accept-btn">
+                                <CheckCircle className="icon" />
+                                Accept Proposal
+                              </Button>
+                              <Button onClick={() => handleRejectProposal(proposal.id)} variant="outline" className="reject-btn">
+                                <XCircle className="icon" />
+                                Reject Proposal
+                              </Button>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    ) : (
-                      <div className="no-proposals">
-                        <p>No proposals received yet.</p>
-                        <Button onClick={() => navigate("/post-job")} className="post-job-btn">
-                          Post a New Job
-                        </Button>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="no-proposals">
+                    <p>No proposals received yet.</p>
+                    <Button onClick={() => navigate("/post-job")}>Post a New Job</Button>
+                  </div>
+                )}
               </TabsContent>
             )}
           </Tabs>

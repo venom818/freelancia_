@@ -1,6 +1,6 @@
 .freelancer-profile {
   min-height: 100vh;
-  background: #f8fafc;
+  background: #f0f9f4;
   padding: 0;
 
   .profile-container {
@@ -16,7 +16,7 @@
 
       .header-background {
         height: 120px;
-        background: linear-gradient(135deg, #169946 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       }
 
       .header-content {
@@ -86,7 +86,7 @@
                 .icon {
                   width: 18px;
                   height: 18px;
-                  color: #169946;
+                  color: #10b981;
                 }
 
                 .value {
@@ -108,15 +108,15 @@
 
               .status-badge {
                 &.available {
-                  background: #c6f6d5;
-                  color: #22543d;
+                  background: #d1fae5;
+                  color: #065f46;
                 }
               }
 
               .rate {
                 font-size: 1.25rem;
                 font-weight: 600;
-                color: #169946;
+                color: #10b981;
               }
             }
           }
@@ -124,11 +124,11 @@
 
         .profile-actions {
           .edit-btn {
-            background: #169946;
-            padding: 20px;
+            padding: 10px;
+            background: #10b981;
             
             &:hover {
-              background: #169946;
+              background: #059669;
             }
 
             .icon {
@@ -143,10 +143,10 @@
             gap: 12px;
 
             .hire-btn {
-              background: #169946;
+              background: #10b981;
               
               &:hover {
-                background: #169946;
+                background: #059669;
               }
 
               .icon {
@@ -162,7 +162,8 @@
               border-color: #e2e8f0;
 
               &:hover {
-                background: #f7fafc;
+                background: #f0f9f4;
+                border-color: #10b981;
               }
 
               .icon {
@@ -180,25 +181,41 @@
     }
 
     .profile-content {
-      padding: 32px;
+      padding: 10px;
+      margin-top: 10px;
 
       .profile-tabs {
         .tabs-list {
-          
-          background: rgb(255, 255, 255);
+
           border-radius: 8px;
-          gap: 10px;
-          padding: 4px;
+          padding: 20px;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-          margin-bottom: 24px;
+          margin-bottom: 20px;
+
+          .tabs-trigger{
+          margin: 10px;
+
+          
+          }
         }
 
         .tab-content {
+          .client-reviews-container{
+            padding: 20px;
+          }
+         .portfolio-title{
+       padding: 20px;
+          font-size: 1.2rem;
+         }
           .overview-grid {
+            padding: 10px;
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 24px;
+
             .about-card {
+
+              padding: 20px;
               .bio {
                 color: #4a5568;
                 line-height: 1.6;
@@ -217,7 +234,7 @@
                   .icon {
                     width: 20px;
                     height: 20px;
-                    color: #169946;
+                    color: #10b981;
                   }
 
                   .label {
@@ -236,9 +253,19 @@
             }
 
             .skills-card {
+              padding: 25px;
               .category-badge {
                 margin-bottom: 20px;
+
+                .badge{
+                  background-color: #dadddc;
+                  font-weight: 400;
+                  font-size: 10px;
+                  padding: 5px;
+                  border-radius: 20px;
+                }
               }
+
 
               .skills-section {
                 margin-bottom: 20px;
@@ -254,14 +281,21 @@
                   display: flex;
                   flex-wrap: wrap;
                   gap: 8px;
+
+                  .badge{
+                    padding: 5px;
+
+                  }
                 }
 
                 .languages-list {
+                  
                   display: flex;
                   flex-direction: column;
                   gap: 8px;
 
                   .language-item {
+              
                     display: flex;
                     align-items: center;
                     gap: 8px;
@@ -269,46 +303,25 @@
                     .icon {
                       width: 16px;
                       height: 16px;
-                      color: #169946;
+                      color: #10b981;
                     }
                   }
                 }
               }
             }
-
-            .certifications-card {
-              grid-column: 1 / -1;
-
-              .certifications-list {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 12px;
-
-                .certification-item {
-                  display: flex;
-                  align-items: center;
-                  gap: 12px;
-                  padding: 12px;
-                  background: #f7fafc;
-                  border-radius: 8px;
-
-                  .icon {
-                    width: 20px;
-                    height: 20px;
-                    color: #169946;
-                  }
-                }
-              }
-            }
+          
           }
 
           .portfolio-description {
+            padding: 20px;
             color: #4a5568;
             line-height: 1.6;
             margin-bottom: 32px;
           }
 
           .recent-projects {
+            margin: 10px;
+            padding: 20px;
             h3 {
               font-size: 1.25rem;
               font-weight: 600;
@@ -327,9 +340,12 @@
                 overflow: hidden;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 transition: transform 0.2s ease;
+                border: 1px solid #e2e8f0;
 
                 &:hover {
                   transform: translateY(-2px);
+                  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+                  border-color: #10b981;
                 }
 
                 .project-image {
@@ -358,10 +374,13 @@
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 8px;
-
+                    .status{
+                      padding: 5px;
+                      background-color: #059669;
+                    }
                     .budget {
                       font-weight: 600;
-                      color: #169946;
+                      color: #10b981;
                     }
                   }
 
@@ -437,8 +456,9 @@
 
             .review-item {
               padding: 24px;
-              background: #f7fafc;
+              background: #f0f9f4;
               border-radius: 12px;
+              border-left: 4px solid #10b981;
 
               .review-header {
                 display: flex;
@@ -504,7 +524,12 @@
           .proposals-section {
             display: grid;
             gap: 24px;
-
+            .submitted-proposals{
+              padding: 20px;
+            }
+            .accepted-proposals{
+              padding: 20px;
+            }
             .proposals-list {
               display: flex;
               flex-direction: column;
@@ -512,9 +537,9 @@
 
               .proposal-item {
                 padding: 20px;
-                background: #f7fafc;
+                background: #f0f9f4;
                 border-radius: 12px;
-                border-left: 4px solid #169946;
+                border-left: 4px solid #10b981;
 
                 .proposal-header {
                   display: flex;
@@ -545,7 +570,7 @@
 
                   .budget {
                     font-weight: 600;
-                    color: #169946;
+                    color: #10b981;
                   }
 
                   .date {

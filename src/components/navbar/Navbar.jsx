@@ -120,8 +120,6 @@
 // };
 // export default Navbar;
 
-
-
 import React, { useEffect, useState } from "react"
 import "./Navbar.scss"
 import { Link, useLocation, useNavigate } from "react-router-dom"
@@ -132,7 +130,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false) //menu click huda ko functionality
   const { pathname } = useLocation()
   const navigate = useNavigate()
-  const currentUser = JSON.parse(localStorage.getItem("currentUser")) // Get from localStorage
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")) //Get from localStorage
 
 
   const isActive = () => {

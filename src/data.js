@@ -16,7 +16,6 @@ export const cards = [
     title: "Video Editing",
     desc: "Add a different touch and effect",
     img: "./img/video.png",
-  
   },
   {
     id: 4,
@@ -36,16 +35,14 @@ export const cards = [
     desc: "Create your own animation",
     img: "./img/animation.png",
   },
-  
   {
     id: 8,
     title: "Illustration",
     desc: "Color you dreams and Creation",
-    img: "./img/art.jpg",
+    img: "./img/art.jpg", 
 
   },
 ];
-
 
 export const projects = [
   {
@@ -236,54 +233,54 @@ export const Sprojects = [
     img: "https://images.pexels.com/photos/580151/pexels-photo-580151.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/720598/pexels-photo-720598.jpeg?auto=compress&cs=tinysrgb&w=1600",
     cat: "Gig1",
-    username: "Monster Sumit",
+    username: "Thakur Kunwar",
   },
   {
     id: 2,
     img: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1600",
     cat: "Gig2",
-    username: "Aayam Coleman regmi",
+    username: "Brijesh Pandey",
   },
   {
     id: 3,
     img: "https://images.pexels.com/photos/8797307/pexels-photo-8797307.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/1062280/pexels-photo-1062280.jpeg?auto=compress&cs=tinysrgb&w=1600",
     cat: "Gig3",
-    username: "Electric Arun",
+    username: "Abin Gahatraj",
   },
   {
     id: 4,
     img: "https://images.pexels.com/photos/5708069/pexels-photo-5708069.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1600",
     cat: "Gig4",
-    username: "Evil Aayush",
+    username: "Kalsen Bhattarai",
   },
   {
     id: 5,
     img: "https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/1771383/pexels-photo-1771383.jpeg?auto=compress&cs=tinysrgb&w=1600",
     cat: "Gig5",
-    username: "Crazy Amrit",
+    username: "Arun Bhattarai",
   },
   {
     id: 6,
     img: "https://images.pexels.com/photos/8100784/pexels-photo-8100784.jpeg?auto=compress&cs=tinysrgb&w=1600",
     cat: "Gig6",
     pp: "https://images.pexels.com/photos/715546/pexels-photo-715546.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    username: "Haunted Bipasha",
+    username: "Rockey Bajracharya",
   },
   {
     id: 7,
     img: "https://images.pexels.com/photos/6039245/pexels-photo-6039245.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/720606/pexels-photo-720606.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    username: "Hunter Bishal Pandey",
+    username: "Girish Thapa",
   },
   {
     id: 8,
     img: "https://images.pexels.com/photos/5490778/pexels-photo-5490778.jpeg?auto=compress&cs=tinysrgb&w=1600",
     pp: "https://images.pexels.com/photos/1699159/pexels-photo-1699159.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    username: "Bhaijan Atit",
+    username: "Alex Shrestha",
   },
 ];
 
