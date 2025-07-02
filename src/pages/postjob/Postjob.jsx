@@ -116,9 +116,9 @@ const PostProjectPage = () => {
         description: formData.description,
         category: formData.category,
         skills: formData.skills
-          .split(",")
-          .map((skill) => skill.trim())
-          .filter((skill) => skill),
+          .split(",") //split by comma
+          .map((skill) => skill.trim()) // remove white space
+          .filter((skill) => skill), //remove empty strings
         budget: `$${formData.minBudget} - $${formData.maxBudget}`,
         budgetType: formData.budgetType,
         minBudget: Number.parseInt(formData.minBudget),

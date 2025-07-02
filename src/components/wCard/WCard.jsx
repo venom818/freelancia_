@@ -21,8 +21,6 @@
 
 
 
-
-//dup 
 // src/components/wCard/WCard.jsx
 import React from 'react';
 import './WCard.scss';

@@ -124,14 +124,12 @@ import React, { useEffect, useState } from "react"
 import "./Navbar.scss"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { logout } from "@/api/auth"
-
 const Navbar = () => {
   const [active, setActive] = React.useState(false)
   const [open, setOpen] = useState(false) //menu click huda ko functionality
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const currentUser = JSON.parse(localStorage.getItem("currentUser")) //Get from localStorage
-
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false)
@@ -167,7 +165,7 @@ const Navbar = () => {
       <div className="container">
         <div className="logo">
           <Link to="/" className="link">
-          <img src="/img/freelancialogo.png" alt="logo" />
+          <img src="/img/freelancialogo5.png" alt="logo" />
            <h1> reelancia</h1>
           </Link>
         </div>
@@ -233,7 +231,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {(active || pathname !== "/") && (
+      {active  && ( //(active || pathname !== "/") removing is so that menulink does appear on other pages 
         <>
           <hr />
           <div className="menu">

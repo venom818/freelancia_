@@ -1,7 +1,7 @@
 export const cards = [
   {
     id: 1,
-    title: "Web and Mobile Design",
+    title: "Web Development",
     desc: "Make your website and App",
     img: "./img/web.jpg",
   },

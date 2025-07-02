@@ -21,3 +21,32 @@
     }
 }
 }
+@media (max-width: 1300px) {
+    .slide {
+      width: 98vw;
+      .container {
+        height: 180px;
+        gap: 12px;
+      }
+    }
+  }
+  @media (max-width: 900px) {
+    .slide {
+      width: 100vw;
+      border-radius: 10px;
+      .container {
+        height: 120px;
+        gap: 8px;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    .slide {
+      width: 100vw;
+      border-radius: 8px;
+      .container {
+        height: 90px;
+        gap: 4px;
+      }
+    }
+  }

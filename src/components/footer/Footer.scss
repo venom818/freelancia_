@@ -34,10 +34,11 @@
 
 
 .footer{
-    background-color: rgb(66, 133, 102);
+    background-color: rgb(255, 255, 255);
+    opacity: 70%;
     display: flex;
     justify-content: center;
-    color: rgb(222, 216, 216);
+    color: rgb(2, 2, 2);
 
     img{
         width: 24px;
@@ -54,9 +55,9 @@
             flex-direction: column;
             gap: 19px;
             h2{
-                margin-top: 10px;
-                font-size: 16px;
-                color: rgb(255, 255, 255);
+                margin-top: 30px;
+                font-size: 17px;
+                color: rgb(0, 0, 0);
             }
             span{
                 font-weight: 300;
@@ -64,7 +65,8 @@
            }
         }
         hr{
-            margin: 50px 0px;
+            margin: 40px 0px;
+            margin-top: 20px;
             height: 0;
             border: 1px solid rgb(59, 56, 56);
         }
@@ -78,7 +80,7 @@
             
             span{
                 font-size: 20px;
-                color: rgb(44, 42, 42);
+                color: rgb(18, 15, 15);
                 margin-top: -50px;
             }
 

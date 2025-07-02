@@ -3,7 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #04ca78 0%, #13a367 100%);
+  // background: linear-gradient(135deg, #04ca78 0%, #04cac3 100%);
+  background: url('/img/back2.jpg') no-repeat center center;
+  background-size: cover;
   padding: 20px;
 
   .login-container {
@@ -13,6 +15,9 @@
     overflow: hidden;
     width: 100%;
     max-width: 420px;
+    background: rgba(249, 249, 249, 0.2); /* semi-transparent */
+  backdrop-filter: blur(10px);          /* blur effect */
+  -webkit-backdrop-filter: blur(10px);
 
     .login-form {
       padding: 40px;
@@ -24,12 +29,12 @@
         h1 {
           font-size: 28px;
           font-weight: 700;
-          color: #1a202c;
+          color: #ffffff;
           margin-bottom: 8px;
         }
 
         p {
-          color: #718096;
+          color: #eaeaeb;
           font-size: 16px;
         }
       }
@@ -42,8 +47,9 @@
 
           span {
             font-size: 14px;
+            letter-spacing: 1px;
             font-weight: 600;
-            color: #4a5568;
+            color: rgb(255, 255, 255);
           }
         }
 
@@ -67,7 +73,7 @@
             }
 
             &.active {
-              border-color: #3cefa4;;
+              border-color: #ffbf5e;;
               background: #f7fafc;
               box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             }
@@ -91,7 +97,7 @@
               span {
                 font-size: 14px;
                 font-weight: 500;
-                color: #4a5568;
+                color: #000000;
               }
             }
           }
@@ -105,7 +111,7 @@
           display: block;
           font-size: 14px;
           font-weight: 600;
-          color: #4a5568;
+          color: #ffffff;
           margin-bottom: 8px;
         }
 
@@ -120,7 +126,7 @@
 
           &:focus {
             outline: none;
-            border-color: #169862;
+            border-color: #030f1f;
             background: white;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
           }
@@ -130,11 +136,10 @@
           }
         }
       }
-
       .login-btn {
         width: 100%;
         padding: 14px;
-        background: linear-gradient(135deg, #04ca78 0%, #0b9d60 100%);
+        background: linear-gradient(135deg, #f99b2e 0%, #ffa411 100%);
         color: white;
         border: none;
         border-radius: 8px;
@@ -159,11 +164,11 @@
         text-align: center;
 
         p {
-          color: #718096;
+          color: #d7d7d7;
           font-size: 14px;
 
           a {
-            color: #0a8250;
+            color: #f0ae1e;
             text-decoration: none;
             font-weight: 600;
 

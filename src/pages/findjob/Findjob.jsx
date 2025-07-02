@@ -20,7 +20,7 @@ const Findjob = () => {
 
   useEffect(() => {
     // Fetch jobs from API or database here
-    // For now, let's use some dummy data
+    // For now, i am suing just dummy data
     const dummyJobs = [
       {
         id: 1,
@@ -137,7 +137,6 @@ const Findjob = () => {
                   </span>
                 </div>
               </div>
-
               <div className="job-card-body">
                 <p className="job-description">{job.description}</p>
 
@@ -173,7 +172,7 @@ const Findjob = () => {
                   </div>
                 </div>
               </div>
-
+              
               <div className="job-card-footer">
                 <Button onClick={() => handlePlaceBid(job)} className="bid-button">
                   <TrendingUp className="button-icon" />

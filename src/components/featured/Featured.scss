@@ -2,10 +2,10 @@
      height:600px;
         display: flex;
         justify-content: center;
-      background: url('/img/beautiful.png') no-repeat center center;
+      background: url('/img/beautiful3.jpg') no-repeat center center;
         background-size: cover;
         color: rgb(223, 238, 224);
-       top: -27px;
+       top: -31px;
        position: relative;
        opacity: 95%; 
     .container{
@@ -21,6 +21,8 @@
 
         h1{
           font-size: 60px;
+          margin-left: 10px;
+        
         }
 
         .search{
@@ -48,7 +50,7 @@
             width: 120px;
             height:50px ;
             border: none;
-            background-color: #089f60;
+            background-color:#fb9f35;
             color: white;
             cursor: pointer;
           }
