@@ -17,7 +17,6 @@ function Login() {
   const handleChange = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)

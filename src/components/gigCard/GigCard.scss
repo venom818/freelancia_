@@ -1,94 +1,235 @@
+// .gigCard {
+//     background-color: white; // White background for the card
+//     border-radius: 10px; // Rounded corners
+//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+//     overflow: hidden; // Prevent overflow of child elements
+//     transition: transform 0.3s; // Smooth transition for hover effect
+
+//     &:hover {
+//         transform: translateY(-5px); // Lift effect on hover
+//     }
+
+//     img {
+//         width: 100%; // Make image responsive
+//         height: auto; // Maintain aspect ratio
+//     }
+
+//     .info {
+//         padding: 15px; // Add padding for spacing
+//         display: flex;
+//         flex-direction: column;
+//         gap: 10px; // Space between elements
+
+//         .user {
+//             display: flex;
+//             align-items: center;
+//             gap: 10px;
+
+//             img {
+//                 width: 40px; // Profile picture size
+//                 height: 40px; // Profile picture size
+//                 border-radius: 50%; // Circular profile picture
+//                 object-fit: cover; // Maintain aspect ratio
+//             }
+
+//             span {
+//                 font-weight: 500; // Bold username
+//                 color: rgb(38, 38, 30); // Dark color for text
+//             }
+//         }
+
+//         p {
+//             font-size: 14px; // Smaller description font size
+//             color: rgb(100, 100, 100); // Gray color for description
+//         }
+
+//         .star {
+//             display: flex;
+//             align-items: center;
+//             gap: 5px;
+
+//             img {
+//                 width: 100px; // Star image size
+//                 height: 100px; // Star image size
+//             }
+
+//             span {
+//                 font-weight: 500; // Bold star rating
+//                 color: rgb(255, 180, 88); // Color for star rating
+//             }
+//         }
+//     }
+
+//     hr {
+//         margin: 10px 0; // Margin for horizontal line
+//         border: 0.5px solid lightgray; // Light gray color for the line
+//     }
+
+//     .details {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         padding: 15px; // Add padding for spacing
+
+//         img {
+//             width: 20px; // Star image size
+//             height: 20px; // Star image size
+//         }
+
+//         .price {
+//             text-align: right; // Align price to the right
+//             span {
+//                 font-size: 12px; // Smaller font size for "STARTING AT"
+//                 color: rgb(100, 100, 100); // Gray color for text
+//             }
+
+//             h2 {
+//                 font-size: 24px; // Larger font size for price
+//                 color: rgb(38, 38, 30); // Dark color for price
+//                 margin: 0; // Remove default margin
+//             }
+//         }
+//     }
+// }
+
 .gigCard {
-    background-color: white; // White background for the card
-    border-radius: 10px; // Rounded corners
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
-    overflow: hidden; // Prevent overflow of child elements
-    transition: transform 0.3s; // Smooth transition for hover effect
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    border: 1.5px solid #f3e7d7;
+    overflow: hidden;
+    transition: transform 0.22s cubic-bezier(.4,2,.6,1), box-shadow 0.22s, border 0.22s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
 
     &:hover {
-        transform: translateY(-5px); // Lift effect on hover
+        transform: translateY(-8px) scale(1.025);
+        box-shadow: 0 8px 32px rgba(248,139,29,0.13);
+        border: 1.5px solid #ffd180;
     }
 
     img {
-        width: 100%; // Make image responsive
-        height: auto; // Maintain aspect ratio
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+        display: block;
+        background: #f9f9f9;
+        border-bottom: 1px solid #f3e7d7;
+        transition: filter 0.2s;
+        object-position: center center;
+        &:hover {
+            filter: brightness(0.97) saturate(1.1);
+        }
     }
 
     .info {
-        padding: 15px; // Add padding for spacing
+        padding: 18px 16px 10px 16px;
         display: flex;
         flex-direction: column;
-        gap: 10px; // Space between elements
+        gap: 12px;
 
         .user {
             display: flex;
             align-items: center;
-            gap: 10px;
-
+            gap: 12px;
             img {
-                width: 40px; // Profile picture size
-                height: 40px; // Profile picture size
-                border-radius: 50%; // Circular profile picture
-                object-fit: cover; // Maintain aspect ratio
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 1.5px solid #ffe5c2;
             }
-
             span {
-                font-weight: 500; // Bold username
-                color: rgb(38, 38, 30); // Dark color for text
+                font-weight: 600;
+                color: #26261e;
+                font-size: 1rem;
             }
         }
-
         p {
-            font-size: 14px; // Smaller description font size
-            color: rgb(100, 100, 100); // Gray color for description
+            font-size: 15px;
+            color: #666;
+            font-weight: 400;
+            margin: 0;
+            min-height: 38px;
         }
-
         .star {
             display: flex;
             align-items: center;
-            gap: 5px;
-
+            gap: 6px;
             img {
-                width: 100px; // Star image size
-                height: 100px; // Star image size
+                width: 120px;
+                height: 50px;
+                object-fit: contain;
             }
-
+           
             span {
-                font-weight: 500; // Bold star rating
-                color: rgb(255, 180, 88); // Color for star rating
+                font-weight: 600;
+                color: #f88b1d;
+                font-size: 1.1rem;
             }
         }
     }
 
     hr {
-        margin: 10px 0; // Margin for horizontal line
-        border: 0.5px solid lightgray; // Light gray color for the line
+        margin: 0 0 0 0;
+        border: none;
+        border-top: 1px solid #f3e7d7;
     }
 
     .details {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 15px; // Add padding for spacing
-
-        img {
-            width: 20px; // Star image size
-            height: 20px; // Star image size
-        }
-
+        justify-content: flex-end;
+        padding: 14px 16px 16px 16px;
+        background: #fff8f1;
+        border-bottom-left-radius: 14px;
+        border-bottom-right-radius: 14px;
         .price {
-            text-align: right; // Align price to the right
+            text-align: right;
             span {
-                font-size: 12px; // Smaller font size for "STARTING AT"
-                color: rgb(100, 100, 100); // Gray color for text
+                font-size: 12px;
+                color: #bfa16a;
+                font-weight: 500;
+                letter-spacing: 1px;
             }
-
             h2 {
-                font-size: 24px; // Larger font size for price
-                color: rgb(38, 38, 30); // Dark color for price
-                margin: 0; // Remove default margin
+                font-size: 1.5rem;
+                color: #26261e;
+                margin: 0;
+                font-weight: 700;
             }
         }
     }
 }
+
+@media (max-width: 600px) {
+    .gigCard {
+        min-height: 340px;
+        .info {
+            padding: 12px 8px 8px 8px;
+            .user img {
+                width: 30px;
+                height: 30px;
+            }
+            p {
+                font-size: 13px;
+                min-height: 24px;
+            }
+            .star img {
+                width: 80px;
+                height: 18px;
+            }
+        }
+        .details {
+            padding: 10px 8px 12px 8px;
+            .price h2 {
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+
 

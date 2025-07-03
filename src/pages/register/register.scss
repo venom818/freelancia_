@@ -3,7 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #04ca78 0%, #04cac3 100%);
+  //background: linear-gradient(135deg, #04ca78 0%, #04cac3 100%);
+  background: url('/img/back1.jpg') no-repeat center center;
+  background-size: cover;
   padding: 20px;
 
   .register-container {
@@ -13,6 +15,10 @@
     overflow: hidden;
     width: 100%;
     max-width: 500px;
+    background: rgba(249, 249, 249, 0.2); /* semi-transparent */
+  backdrop-filter: blur(10px);          /* blur effect */
+  -webkit-backdrop-filter: blur(10px);
+
 
     .register-form {
       padding: 40px;
@@ -67,9 +73,9 @@
             }
 
             &.active {
-              border-color:  #04ca78;
+              border-color: #ffbf5e;;
               background: #fef5f5;
-              box-shadow: 0 0 0 3px rgba(245, 87, 108, 0.1);
+              box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             }
 
             input[type="radio"] {
@@ -151,7 +157,7 @@
       .register-btn {
         width: 100%;
         padding: 14px;
-        background: linear-gradient(135deg, #04ca78 0%, #1fa96f 100%);
+        background: linear-gradient(135deg, #f99b2e 0%, #ffa411 100%);
         color: white;
         border: none;
         border-radius: 8px;
@@ -176,11 +182,11 @@
         text-align: center;
 
         p {
-          color: #718096;
+          color: #414141;
           font-size: 14px;
 
           a {
-            color:  #04ca78;
+            color:  #f0ae1e;
             text-decoration: none;
             font-weight: 600;
 

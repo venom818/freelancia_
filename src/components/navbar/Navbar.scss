@@ -5,7 +5,8 @@ width: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
-background: linear-gradient(90deg, #f46b45, #eea849);
+background: linear-gradient(90deg, #f66d32, #eea849);
+// background: linear-gradient(90deg, #7445f4, #49b7ee);
 color: #e8e8e8;
 width: 100vw;
 min-width: 0;
@@ -19,7 +20,6 @@ transition: 0.5s all ease;
     background-color: #fff9f9;
     color: rgb(255, 255, 255);
 }
-
     .container{
         width: 100vw;
         max-width: 1400px;

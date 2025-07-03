@@ -28,7 +28,7 @@ const CatCard = ({item}) =>{
         <Link to="gigs?cat=design">
             <div className="catCard">
             <img src={item.img} alt="image"/>
-            <span className="desc">{item.desc}</span>
+            {/* <span className="desc">{item.desc}</span> */}
             <span className="title">{item.title}</span>
         </div>
         </Link>

@@ -16,7 +16,7 @@
 
       .header-bg {
         height: 120px;
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        background-color: rgb(255, 204, 109);
       }
 
       .header-content {
@@ -90,7 +90,7 @@
                 .icon {
                   width: 20px;
                   height: 20px;
-                  color: #10b981;
+                  color: orange;
                 }
 
                 h3 {
@@ -104,13 +104,13 @@
                   display: flex;
                   align-items: center;
                   gap: 6px;
-                  color: #10b981;
+                  color: orange;
                   text-decoration: none;
                   font-size: 0.875rem;
                   transition: color 0.2s ease;
 
                   &:hover {
-                    color: #10b981;
+                    color: orange;
                   }
 
                   .icon {
@@ -134,7 +134,7 @@
                 .icon {
                   width: 18px;
                   height: 18px;
-                  color: #10b981;
+                  color: orange;
                 }
 
                 .value {
@@ -154,10 +154,10 @@
         .actions {
           .edit-btn {
             padding: 10px;
-            background: #10b981;
+            background: orange;
             
             &:hover {
-              background: #10b981;
+              background: orange;
             }
 
             .icon {
@@ -172,10 +172,10 @@
             gap: 12px;
 
             .message-btn {
-              background: #10b981;
+              background: orange;
               
               &:hover {
-                background: #10b981;
+                background: orange;
               }
 
               .icon {
@@ -241,16 +241,16 @@
                   display: flex;
                   align-items: center;
                   gap: 6px;
-                  color: #10b981;
+                  color: orange;
                   text-decoration: none;
                   font-size: 0.875rem;
                   padding: 6px 12px;
-                  border: 1px solid #10b981;
+                  border: 1px solid orange;
                   border-radius: 6px;
                   transition: all 0.2s ease;
 
                   &:hover {
-                    background: #10b981;
+                    background: orange;
                     color: white;
                   }
 
@@ -279,7 +279,7 @@
                   .icon {
                     width: 20px;
                     height: 20px;
-                    color: #10b981;
+                    color: orange;
                   }
 
                   .label {
@@ -321,7 +321,7 @@
                   .icon {
                     width: 16px;
                     height: 16px;
-                    color: #10b981;
+                    color: orange;
                   }
                 }
               }
@@ -345,7 +345,7 @@
                     .stat-icon {
                       width: 48px;
                       height: 48px;
-                      background: #10b981;
+                      background: orange;
                       border-radius: 12px;
                       display: flex;
                       align-items: center;
@@ -387,7 +387,7 @@
               padding: 24px;
               background: #f7fafc;
               border-radius: 12px;
-              border-left: 4px solid #10b981;
+              border-left: 4px solid orange;
 
               .job-header {
                 display: flex;
@@ -414,7 +414,7 @@
 
                   .budget {
                     font-weight: 600;
-                    color: #10b981;
+                    color: orange;
                   }
 
                   .proposals {
@@ -564,7 +564,7 @@
                   gap: 12px;
 
                   .accept-btn {
-                    background: #10b981;
+                    background: orange;
 
                     &:hover {
                       background: #059669;
@@ -578,11 +578,11 @@
                   }
 
                   .reject-btn {
-                    border-color: #10b981;
-                    color: #10b981;
+                    border-color: orange;
+                    color: orange;
 
                     &:hover {
-                      background: #10b981;
+                      background: orange;
                       color: white;
                     }
 

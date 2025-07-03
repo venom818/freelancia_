@@ -95,15 +95,15 @@ const Home = () => {
 
           <div className="features2-right">
             <div className="features2-image-card">
-              {/* Illustration from undraw.co */}
+
               <img className="features2-illustration" src="./img/beautiful3.png" alt="Teamwork" />
-              {/* Project Status Badge */}
+              
               <div className="features2-status-badge">
                 <span className="features2-status-dot"></span>
                 Project Status
                 <span className="features2-status-value">92%</span>
               </div>
-              {/* Chart/Card Overlay */}
+             
               <div className="features2-chart-card">
                 <span className="features2-chart-value">$8,900</span>
                 <svg className="features2-chart-svg" width="60" height="28" viewBox="0 0 60 28"><polyline points="0,20 15,10 30,18 45,8 60,12" fill="none" stroke="#3bb77e" strokeWidth="2"/></svg>
@@ -112,8 +112,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* <Slide slidesToShow={5} arrowScroll={5}>
+{/* 
+      <Slide slidesToShow={5} arrowScroll={5}>
         {Sprojects.map(card => (
           <ProjectCard key={card.id} item={card} />
         ))}

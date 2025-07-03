@@ -25,7 +25,7 @@ export const cards = [
   },
   {
     id: 5,
-    title: "Graphics Designing",
+    title: "Graphics Design",
     desc: "Engage your audience",
     img: "./img/Redbull.jpg",
   },
