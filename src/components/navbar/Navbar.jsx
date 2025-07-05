@@ -179,8 +179,7 @@ const Navbar = () => {
             </Link>
           )}
           {/* //if curerent user is Freelancer dont show this links */}
-
-          {!currentUser && (
+          {!currentUser &&(
             <Link className="link" to="/register">
               <button>Register</button>
             </Link>
@@ -193,7 +192,6 @@ const Navbar = () => {
                 alt=""
               />
               <span>{currentUser?.username}</span>
-
               {open && (
                 <div className="options">
                   {currentUser === "freelancer" ? (
@@ -231,9 +229,9 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {active  && ( //(active || pathname !== "/") removing is so that menulink does appear on other pages 
+      {active  && pathname !== "/login" && pathname !== "/register" && ( //(active || pathname !== "/") removing is so that menulink does appear on other pages  */}
         <>
-          <hr />
+          {/* <hr /> */}
           <div className="menu">
             <Link className="link menuLink" to="/">
               Graphics Designing

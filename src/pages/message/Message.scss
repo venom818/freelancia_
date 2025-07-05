@@ -1,32 +1,42 @@
-
 .message{
 display: flex;
+
 justify-content: center;
     .container{
-         width: 1200px;
-         margin: 50px;
+         width: 100%;
+         max-width: 700px;
+         margin: 48px 0 0 0;
+         background: #fff;
+         border-radius: 18px;
+         box-shadow: 0 4px 24px rgba(22,163,74,0.07);
+         padding: 36px 32px 24px 32px;
         .breadcrumbs{
-            font-weight: 300;
-            font-size: 14px;
-            color: darkgoldenrod;
+            font-weight: 400;
+            font-size: 15px;
+            color: #16a34a;
+            margin-bottom: 18px;
+            display: block;
         }
 
         .messages{
-            margin: 30px 0px;
-            padding: 50px;
-            padding-top: 120px;
+            margin: 24px 0 0 0;
+            padding: 32px 0 32px 0;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            height: 500px;
-            overflow: scroll; // if bigger than 500 then its scroll
+            gap: 18px;
+            height: 420px;
+            overflow-y: auto;
+            background: #f6fef7;
+            border-radius: 14px;
+            box-shadow: 0 1px 4px rgba(22,163,74,0.04);
             
 
             .item{
                 display: flex;
-                gap: 20px;
-                max-width: 600px;
-                font-size: 18px;
+                gap: 16px;
+                max-width: 70%;
+                font-size: 17px;
+                align-items: flex-end;
 
                 &.owner{
                     flex-direction: row-reverse;
@@ -34,53 +44,75 @@ justify-content: center;
 
 
                     p{
-                        border-radius: 20px 0px 20px 20px;
-                        background-color: rgb(250, 170, 42);
-                        color: white;
+                        border-radius: 18px 0px 18px 18px;
+                        background-color: #16a34a;
+                        color: #fff;
+                        box-shadow: 0 2px 8px rgba(22,163,74,0.08);
                     }
                 }
                 
 img{
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #bbf7d0;
 }
 
                 p{
-                    padding: 20px;
-                    background-color: rgb(241, 198, 128);
-                    border-radius: 0px 20px 20px 20px;
-                    color: rgb(65, 49, 49);
+                    padding: 16px 22px;
+                    background-color: #bbf7d0;
+                    border-radius: 0px 18px 18px 18px;
+                    color: #222;
+                    box-shadow: 0 1px 4px rgba(22,163,74,0.04);
+                    margin: 0;
                 }   
             }
         }
 hr{
-    height: 0px;
-    margin-bottom: 20px;
+    height: 0;
+    margin: 28px 0 18px 0;
+    border: none;
+    border-top: 1.5px solid #e0f2e9;
 }
         .write{
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 18px;
+            margin-top: 8px;
 
             textarea{
                 width: 80%;
-                height: 100px;
-                padding: 10px;
-                border: 1px solid rgb(141, 138, 130);
-                border-radius: 15px;
+                height: 80px;
+                padding: 14px;
+                border: 1.5px solid #e0f2e9;
+                border-radius: 12px;
+                font-size: 1rem;
+                background: #f6fef7;
+                resize: none;
+                transition: border 0.2s;
+                &:focus {
+                    border: 1.5px solid #16a34a;
+                    outline: none;
+                }
             }
 
             button{
                 cursor: pointer;
-                background-color: rgb(80, 202, 71);
-                padding: 20px;
-                color: white;
+                background-color: #16a34a;
+                padding: 16px 0;
+                color: #fff;
                 border: none;
                 border-radius: 10px;
-                width: 90px;
-                
+                width: 100px;
+                font-weight: 600;
+                font-size: 1rem;
+                box-shadow: 0 2px 8px rgba(22,163,74,0.08);
+                transition: background 0.2s;
+                &:hover {
+                    background: #15803d;
+                }
             }
         }
     }

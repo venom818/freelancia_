@@ -71,6 +71,8 @@ background-color: #ffffff;
       button {
         padding: 12px 28px;
         background: linear-gradient(90deg, #f46b45 0%, #eea849 100%);
+        background: linear-gradient(90deg, #7445f4 0%, #49b7ee 100%);
+        background: linear-gradient(90deg, #13a86a 0%, #43e97b 100%);
         color: #fff;
         border: none;
         border-radius: 8px;
@@ -81,6 +83,7 @@ background-color: #ffffff;
         transition: background 0.3s, color 0.3s;
         &:hover {
           background: linear-gradient(90deg, #eea849 0%, #f46b45 100%);
+          background: linear-gradient(90deg, #0b8250 0%, #23ad51 100%);
           color: #fffbe6;
         }
       }
@@ -184,6 +187,7 @@ background-color: #ffffff;
 
   .container3 {
     background: linear-gradient(90deg, #fffbe6 0%, #fff9e6 100%);
+    background: linear-gradient(90deg, #e6ffed 0%, #e6ffed 100%);
     width: 900px;
     margin: 40px auto 32px auto;
     border-radius: 20px;
@@ -213,6 +217,7 @@ background-color: #ffffff;
   .container3-text {
     font-size: 1.25rem;
     color: #f46b45;
+    color: #13a86a;
     font-weight: 600;
     letter-spacing: 0.5px;
   }
@@ -425,6 +430,7 @@ background-color: #ffffff;
 
 .features2 {
   background: #fffbe6;
+  background: #e6ffed;
   border-radius: 18px;
   max-width: 900px;
   margin: 0 auto 32px auto;
@@ -459,6 +465,7 @@ background-color: #ffffff;
 }
 .features2-highlight {
   color: #3bb77e;
+  //color: #eca452;
 }
 .features2-features {
   display: flex;

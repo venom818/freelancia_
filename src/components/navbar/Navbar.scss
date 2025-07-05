@@ -1,12 +1,18 @@
 body {
 padding-top: 100px; //body{ padding -top: 100px } use gare par nav bar paxadi vitra ko paragraph letter haru lukdaina balki nav bar ko tala bata paragraph start hunxa
 width: 100%;
+margin:0px;
 .navbar{
 display: flex;
 flex-direction: column;
 align-items: center;
-background: linear-gradient(90deg, #f66d32, #eea849);
-// background: linear-gradient(90deg, #7445f4, #49b7ee);
+background: linear-gradient(90deg, #f26d34, #eea849);
+background: linear-gradient(90deg, #7445f4, #49b7ee);
+//background:linear-gradient(90deg, #1e3c72, #2a5298);
+//background:linear-gradient(90deg, #667eea, #764ba2);
+background:linear-gradient(90deg, #0f9b8e, #33d77d) ;
+background: linear-gradient(90deg, #24b967, #33d77d);
+//background:linear-gradient(90deg, #19ac5b, #0e944a) ;
 color: #e8e8e8;
 width: 100vw;
 min-width: 0;
@@ -79,16 +85,18 @@ transition: 0.5s all ease;
           
             button{
                 color: #232323;
+                color: #0f9b8e;
                 padding: 4px 14px;
-                border-radius: 8px;
+                border-radius: 5px;
                 cursor: pointer;
                 background-color: #fffbe6;
+                
                 font-weight: 500;
                 font-size: 1rem;
                 border: none;
                 transition: all 0.3s ease;
               &:hover{
-         background-color: #ff6b6b;
+         background-color:#0ab04f;
          color: #fff;
            
                 }
@@ -150,13 +158,13 @@ transition: 0.5s all ease;
         }
 
     }
-    hr{
+    // hr{
         
-       width:100% ;
-       height: 0;
-       border: 0.5 solid white;
-        background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
-    }
+    //   //  width:100% ;
+    //   //  height: 0;
+    //   //  border: 0.5 solid white;
+    //   //   background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+    // }
 
     .menu {
     width: 100vw;

@@ -44,46 +44,227 @@ export const cards = [
   },
 ];
 
+// export const projects = [
+//   {
+//     id: 1,
+//     img: "https://i.pinimg.com/1200x/fb/8e/f7/fb8ef7468fe683cc676ff87bf04450ba.jpg",
+//     // cat: "Yoga App UI",
+//     username: "Abin Gahatraj",
+//   },
+//   {
+//     id: 2,
+//     img: "https://i.pinimg.com/1200x/b2/60/19/b26019df8ee5cca9f45d5194f556c8bb.jpg",
+//     // cat: "Logo Design",
+//     username: "Abin Gahatraj",
+//   },
+//   {
+//     id: 3,
+//     img: "https://i.pinimg.com/1200x/ba/0c/df/ba0cdfba2bd546cf294d4c46f2547fbf.jpg",
+//     // cat: "Animated GIFs",
+//     username: "Abin Gahatraj",
+//   },
+//   {
+//     id: 4,
+//     img: "https://i.pinimg.com/1200x/c0/3b/5b/c03b5b62150191796e14eca4f3a39f50.jpg",
+//     // cat: "Packaging Design",
+//     username: "Abin Gahatraj",
+//   },
+//   {
+//     id: 5,
+//     img: "https://i.pinimg.com/1200x/89/be/7f/89be7fef3a174bee1b03fb3b69db7946.jpg",
+//     // cat: "Social Media Design",
+//     username: "Abin Gahatraj",
+//   },
+//   {
+//     id: 6,
+//     img: "https://i.pinimg.com/1200x/2c/af/b7/2cafb7a5d5c90e91cdd94d32f7016bbc.jpg",
+//     // cat: "Illustration",
+//     username: "Abin Gahatraj",
+//   },
+//   {
+//     id: 7,
+//     img: "https://i.pinimg.com/1200x/0c/ff/2c/0cff2c5d3bb694384bb12913c8c66838.jpg",
+//     // cat: "Book Design",
+//     username: "Abin Gahatraj",
+//   },
+//    {
+//     id: 8,
+//   img: "https://i.pinimg.com/1200x/af/00/5b/af005bcf5ddc6f225dc394543ffcfc51.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+// },
+// {
+//     id: 9,
+//   img: "https://i.pinimg.com/1200x/d6/a8/59/d6a8590ffb48f31ebfe217f055af0c21.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+// },
+// {
+//     id: 10,
+//   img: "https://i.pinimg.com/1200x/95/3e/5f/953e5f9bd799dbcae529df90c94d70a2.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+// },
+// {
+//     id: 11,
+//   img: "https://i.pinimg.com/1200x/ba/9b/e5/ba9be526f3e5795e1621495a8e7b7ff0.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+// },
+// {
+//     id: 12,
+//   img: "https://i.pinimg.com/1200x/00/3c/1c/003c1c231a0830574f7f14801792c61f.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 13,
+//   img: "https://i.pinimg.com/1200x/4e/a0/9d/4ea09dddf4f16bc43b08ca2e81ede155.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 14,
+//   img: "https://i.pinimg.com/1200x/22/22/26/22222639474f23803d4479462b94d908.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 15,
+//   img: "https://i.pinimg.com/1200x/40/8b/22/408b22e17ecde2c08484b0863cd1a43b.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 16,
+//   img: "https://i.pinimg.com/1200x/af/d5/f9/afd5f995cbe2321a9a12088110873f4d.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id:17,
+//   img: "https://i.pinimg.com/1200x/87/1f/0e/871f0e7360542c0ce3ed6357fb05c98f.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 18,
+//   img: "https://i.pinimg.com/1200x/27/b9/03/27b903a494f2e36ba87ea95ff922d477.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 19,
+//   img: "https://i.pinimg.com/1200x/f8/a0/90/f8a090b41f36235091e1c713f240fd25.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 20,
+//   img: "https://i.pinimg.com/1200x/27/19/eb/2719ebc6c17f9c4688209a6a9dc7c3c3.jpg",
+//     // cat: "Book Designdfg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 21,
+//   img: "https://i.pinimg.com/1200x/97/9d/32/979d329ced3fef2d66de87b64da338aa.jpg",
+//     username: "Abin Gahatraj",
+    
+// },
+
+// {
+//     id: 21,
+//   img: "https://i.pinimg.com/1200x/71/35/f9/7135f9736268a6e9a0cad54b867ebdb9.jpg",
+//     username: "Abin Gahatraj",
+// },
+// {
+//     id: 22,
+//   img: "./img/mylogo.png",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 23,
+//   img: "https://i.pinimg.com/1200x/c1/12/0d/c1120d1d06227b01c30d5c048975ef55.jpg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 24,
+//   img: "https://i.pinimg.com/1200x/e0/53/8a/e0538af7409696a81b56e698b8c9c643.jpg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 25,
+//   img: "https://i.pinimg.com/1200x/e5/3a/82/e53a826dd82246399f07c86e65661d41.jpg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 26,
+//   img: "https://i.pinimg.com/1200x/e9/24/e3/e924e317cb575927b61d690e843b4097.jpg",
+//     username: "Abin Gahatraj",
+    
+// },
+// {
+//     id: 27,
+//   img: "https://i.pinimg.com/1200x/eb/f3/28/ebf3288551baf118462bb44f125ac0e1.jpg",
+//     username: "Abin Gahatraj",
+    
+// },
+
+// ];
+
 export const projects = [
   {
     id: 1,
-    img: "https://i.pinimg.com/1200x/fb/8e/f7/fb8ef7468fe683cc676ff87bf04450ba.jpg",
+    img: "./img/one.jpg",
     // cat: "Yoga App UI",
     username: "Abin Gahatraj",
   },
   {
     id: 2,
-    img: "https://i.pinimg.com/1200x/b2/60/19/b26019df8ee5cca9f45d5194f556c8bb.jpg",
+    img: "./img/two.jpg",
     // cat: "Logo Design",
     username: "Abin Gahatraj",
   },
   {
     id: 3,
-    img: "https://i.pinimg.com/1200x/ba/0c/df/ba0cdfba2bd546cf294d4c46f2547fbf.jpg",
+    img: "./img/venomart2.jpg",
     // cat: "Animated GIFs",
     username: "Abin Gahatraj",
   },
   {
     id: 4,
-    img: "https://i.pinimg.com/1200x/c0/3b/5b/c03b5b62150191796e14eca4f3a39f50.jpg",
+    img: "./img/three.jpg",
     // cat: "Packaging Design",
     username: "Abin Gahatraj",
   },
   {
     id: 5,
-    img: "https://i.pinimg.com/1200x/89/be/7f/89be7fef3a174bee1b03fb3b69db7946.jpg",
+    img: "./img/yogaapp.png",
     // cat: "Social Media Design",
     username: "Abin Gahatraj",
   },
   {
     id: 6,
-    img: "https://i.pinimg.com/1200x/2c/af/b7/2cafb7a5d5c90e91cdd94d32f7016bbc.jpg",
+    img: "./img/four.jpg",
     // cat: "Illustration",
     username: "Abin Gahatraj",
   },
   {
     id: 7,
-    img: "https://i.pinimg.com/1200x/0c/ff/2c/0cff2c5d3bb694384bb12913c8c66838.jpg",
+    img: "./img/timetravel.jpg",
     // cat: "Book Design",
     username: "Abin Gahatraj",
   },
@@ -101,9 +282,9 @@ export const projects = [
 },
 {
     id: 10,
-  img: "https://i.pinimg.com/1200x/95/3e/5f/953e5f9bd799dbcae529df90c94d70a2.jpg",
+  img: "./img/five.png",
     // cat: "Book Designdfg",
-    username: "Abin Gahatraj",
+    username: "Niranjan Shakya",
 },
 {
     id: 11,
@@ -113,35 +294,35 @@ export const projects = [
 },
 {
     id: 12,
-  img: "https://i.pinimg.com/1200x/00/3c/1c/003c1c231a0830574f7f14801792c61f.jpg",
+  img: "./img/six.jpg",
     // cat: "Book Designdfg",
     username: "Abin Gahatraj",
     
 },
 {
     id: 13,
-  img: "https://i.pinimg.com/1200x/4e/a0/9d/4ea09dddf4f16bc43b08ca2e81ede155.jpg",
+  img: "./img/royal.png",
     // cat: "Book Designdfg",
     username: "Abin Gahatraj",
     
 },
 {
     id: 14,
-  img: "https://i.pinimg.com/1200x/22/22/26/22222639474f23803d4479462b94d908.jpg",
+  img: "./img/baba.jpg",
     // cat: "Book Designdfg",
     username: "Abin Gahatraj",
     
 },
 {
     id: 15,
-  img: "https://i.pinimg.com/1200x/40/8b/22/408b22e17ecde2c08484b0863cd1a43b.jpg",
+  img: "./img/camoflague.jpg",
     // cat: "Book Designdfg",
     username: "Abin Gahatraj",
     
 },
 {
     id: 16,
-  img: "https://i.pinimg.com/1200x/af/d5/f9/afd5f995cbe2321a9a12088110873f4d.jpg",
+  img: "./img/thanos.jpg",
     // cat: "Book Designdfg",
     username: "Abin Gahatraj",
     
@@ -194,13 +375,13 @@ export const projects = [
 },
 {
     id: 23,
-  img: "https://i.pinimg.com/1200x/c1/12/0d/c1120d1d06227b01c30d5c048975ef55.jpg",
+  img: "./img/ringlogo.jpg",
     username: "Abin Gahatraj",
     
 },
 {
     id: 24,
-  img: "https://i.pinimg.com/1200x/e0/53/8a/e0538af7409696a81b56e698b8c9c643.jpg",
+  img: "./img/seven.jpg",
     username: "Abin Gahatraj",
     
 },
@@ -218,13 +399,12 @@ export const projects = [
 },
 {
     id: 27,
-  img: "https://i.pinimg.com/1200x/eb/f3/28/ebf3288551baf118462bb44f125ac0e1.jpg",
-    username: "Abin Gahatraj",
+  img: "./img/travel.jpg",
+    username: "Biraj Gahatraj",
     
 },
 
 ];
-
 
 
 export const Sprojects = [

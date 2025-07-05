@@ -33,7 +33,7 @@ function FreelancerProfile() {
   const navigate = useNavigate()
   const { showToast } = useToast()
   const [freelancer, setFreelancer] = useState(null)
-  const [isOwnProfile, setIsOwnProfile] = useState(false)
+  const [isOwnProfile, setIsOwnProfile] = useState(true)
   const [loading, setLoading] = useState(true)
   const [submittedProposals, setSubmittedProposals] = useState([])
 

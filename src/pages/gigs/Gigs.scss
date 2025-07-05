@@ -131,7 +131,7 @@
 .gigs {
     display: flex;
     justify-content: center;
-    background: linear-gradient(135deg, #f9f9f9 60%, #ffe5c2 100%);
+    background: linear-gradient(135deg, #f9f9f9 60%, #c2ffd0 100%);
 
     min-height: 100vh;
     padding: 40px 0;
@@ -161,7 +161,7 @@
             margin-bottom: 0.2em;
         }
         p {
-            color: #f88b1d;
+            color: #22c55e;
             font-size: 1.1rem;
             font-weight: 400;
             margin-bottom: 0.5em;
@@ -174,7 +174,7 @@
             flex-wrap: wrap;
             gap: 16px;
             padding-bottom: 8px;
-            border-bottom: 1px solid #f3e7d7;
+            border-bottom: 1px solid #e0f2e0;
 
             .left {
                 display: flex;
@@ -185,10 +185,10 @@
 
                 input {
                     padding: 10px 14px;
-                    border: 1px solid #e0c9a6;
+                    border: 1px solid #bbd5bb;
                     outline: none;
                     border-radius: 6px;
-                    background: #faf7f2;
+                    background: #f0f9f0;
                     font-size: 1rem;
                     transition: border 0.2s;
                     &::placeholder {
@@ -196,22 +196,22 @@
                         opacity: 0.7;
                     }
                     &:focus {
-                        border: 1.5px solid #f88b1d;
+                        border: 1.5px solid #22c55e;
                     }
                 }
                 button {
-                    background: rgb(253, 185, 60);
+                    background: rgb(34, 197, 94);
                     color: #fff;
                     font-weight: 600;
                     border: none;
                     cursor: pointer;
                     padding: 10px 20px;
                     border-radius: 6px;
-                    box-shadow: 0 2px 8px rgba(248,139,29,0.08);
+                    box-shadow: 0 2px 8px rgba(34,197,94,0.08);
                     transition: background 0.3s, box-shadow 0.3s;
                     &:hover {
-                        background-color: #f88b1d;
-                        box-shadow: 0 4px 16px rgba(248,139,29,0.12);
+                        background-color: #16a34a;
+                        box-shadow: 0 4px 16px rgba(34,197,94,0.12);
                     }
                 }
             }
@@ -226,7 +226,7 @@
                 }
                 .sortType {
                     font-weight: 600;
-                    color: #f88b1d;
+                    color: #22c55e;
                 }
                 img {
                     width: 22px;
@@ -241,7 +241,7 @@
                     padding: 10px 16px;
                     background: #fff;
                     border-radius: 8px;
-                    border: 1px solid #f3e7d7;
+                    border: 1px solid #e0f2e0;
                     position: absolute;
                     top: 36px;
                     right: 0;
@@ -255,7 +255,7 @@
                         cursor: pointer;
                         transition: color 0.2s;
                         &:hover {
-                            color: #f88b1d;
+                            color: #22c55e;
                         }
                     }
                 }

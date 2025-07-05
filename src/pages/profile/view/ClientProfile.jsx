@@ -32,7 +32,7 @@ function ClientProfile() {
   const navigate = useNavigate()
   const { showToast } = useToast()
   const [client, setClient] = useState(null)
-  const [isOwnProfile, setIsOwnProfile] = useState(true)
+  const [isOwnProfile, setIsOwnProfile] = useState(false)
   const [loading, setLoading] = useState(true)
   const [receivedProposals, setReceivedProposals] = useState([])
 

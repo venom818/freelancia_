@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "../pages/Registerr";
 // import FreelancerRegister from "../pages/FreelancerRegister";
 // import ClientRegister from "../pages/ClientRegister";
-import Login from "../pages/Login";
+import Login from "../pages/Loginn";
 // import Dashboard from "../pages/Dashboard";
 
 export function AppRoutes() {
