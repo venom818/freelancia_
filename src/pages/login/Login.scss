@@ -5,7 +5,7 @@
   justify-content: center;
   //10, 12 , 13, 16
   // background: linear-gradient(135deg, #04ca78 0%, #04cac3 100%);
- background: url('/img/beautiful3.jpg') no-repeat center center;
+   background: url('/img/beautiful3.jpg') no-repeat center center;
   background-size:cover;
   background-position: center;
   margin-top: -40px;
@@ -34,7 +34,7 @@
         h1 {
           font-size: 28px;
           font-weight: 700;
-          color: #24b967;
+          color: #d7d7d7;
           margin-bottom: 8px;
         }
 
@@ -73,13 +73,13 @@
             display: block;
 
             &:hover {
-              border-color: #33d77d;
+              border-color: #0fa954;
               transform: translateY(-1px);
             }
 
             &.active {
               border-color: #24b967;
-              background: #f7fafc;
+              background: linear-gradient(135deg, #04ca78 0%, #08b26e 100%);
               box-shadow: 0 0 0 3px rgba(36, 185, 103, 0.1);
             }
 
@@ -103,7 +103,7 @@
               span {
                 font-size: 15px;
                 font-weight: 600;
-                color: #24b967;
+                color: #ffffff;
               }
             }
           }

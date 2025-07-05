@@ -13,10 +13,10 @@ const Gig = () => {
           <div className="user">
             <img
               className="pp"
-              src="https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src="../img/abin1.png"
               alt=""
             />
-            <span>Jane Doe</span>
+            <span>Venom Gahatraj</span>
             <div className="stars">
               <img src="/img/5stars.png" alt="" />
               {/* <span>5</span> */}
@@ -40,28 +40,72 @@ const Gig = () => {
           >
             <div>
               <img
-                src="https://i.pinimg.com/1200x/75/1d/9f/751d9fd81d5a13fbd12890afb46e0d63.jpg"
+                src="../img/camoflague.jpg"
                 alt=""
               />
             </div>
             <div>
               <img
-                src="https://i.pinimg.com/1200x/c5/24/7d/c5247dae802d33558ca2751e0e78fc6c.jpg"
+                src="../img/carspeed.jpg"
                 alt=""
               />
             </div>
             <div>
               <img
-                src="https://i.pinimg.com/1200x/ff/df/f1/ffdff1341504da169741ce791f1be4d5.jpg"
+                src="../img/timetravel.jpg"
                 alt=""
               />
             </div>
             <div>
               <img
-                src="https://i.pinimg.com/1200x/7f/8c/b0/7f8cb02207add9990f2e2bd1f2bf5b80.jpg"
+                src="../img/baba.jpg"
                 alt=""
               />
             </div>
+            <div>
+              <img
+                src="../img/travel.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="../img/venomart2.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="../img/healthyhomes.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="../img/thanos.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="../img/.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="../img/haldi.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="../img/burger.jpg"
+                alt=""
+              />
+            </div>
+            
+            
           </Carousel>
 
           <h2>About this gig</h2>
@@ -82,16 +126,16 @@ const Gig = () => {
           </p>
 
           <div className="seller">
-            <h2>About The Seller</h2>
+            <h2>About The Freelancer</h2>
             <div className="user">
               <img
-                src="https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src="/img/abin1.png"
                 alt=""
               />
               <div className="info">
                 {" "}
                 {/* Added info div for better alignment */}
-                <span>Jane Doe</span>
+                <span>Venom Gahatraj</span>
                 <div className="stars">
                   <img src="/img/5stars.png" alt="" />
                   {/* <span>5</span> */}
@@ -143,12 +187,12 @@ const Gig = () => {
                   alt=""
                 />
                 <div className="info">
-                  <span>Jane Doe</span>
+                  <span>Thakur Kunwar</span>
                   <div className="country">
                     {" "}
                     {/* Corrected class name to 'country' */}
                     <img src="https://flagpedia.net/data/flags/icon/96x54/us.png" alt="" />
-                    <span>Nepal</span>
+                    <span>Antartica</span>
                   </div>
                 </div>
               </div>
@@ -180,11 +224,11 @@ const Gig = () => {
                   alt=""
                 />
                 <div className="info">
-                  <span>John Doe</span>
+                  <span>Sumit Kawar</span>
                   <div className="country">
                     <img src="https://flagpedia.net/data/flags/icon/96x54/us.png" alt="" />{" "}
                     {/* Added missing image src */}
-                    <span>Nepal</span>
+                    <span>Sahara Desert</span>
                   </div>
                 </div>
               </div>

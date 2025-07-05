@@ -170,9 +170,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="links">
-          <span>About Us</span>
-          <span>Contact</span>
-          <span>Explore More</span>
+          <Link to="/about" className="link">About Us</Link>
+          <Link to="/contact" className="link">Contact</Link>
+          <Link to="/explore" className="link">Explore More</Link>
           {!currentUser && (
             <Link className="link" to="/login">
               Login In

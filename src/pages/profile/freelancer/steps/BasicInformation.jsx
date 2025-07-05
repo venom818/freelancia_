@@ -7,7 +7,6 @@ function BasicInformation({ data, onChange, onNext }) {
     location: data.location || "",
     bio: data.bio || "",
   })
-
   const [errors, setErrors] = useState({})
 
   const handleChange = (field, value) => {
@@ -16,7 +15,6 @@ function BasicInformation({ data, onChange, onNext }) {
       setErrors((prev) => ({ ...prev, [field]: "" }))
     }
   }
-
   const validateForm = () => {
     const newErrors = {}
 

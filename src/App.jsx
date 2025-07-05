@@ -19,6 +19,9 @@ import FreelancerProfileCreation from "./pages/profile/freelancer/FreelancerProf
 import ClientProfileCreation from "./pages/profile/client/ClientProfileCreation"
 import FreelancerProfile from "./pages/profile/view/FreelancerProfile"
 import ClientProfile from "./pages/profile/view/ClientProfile"
+import Explore from "./pages/explore/Explore"
+import Contact from "./pages/contact/Contact"
+import About from "./pages/about/About"
 
 function App() {
   const Layout = () => {
@@ -112,6 +115,18 @@ function App() {
         {
           path: "/client-profile/:id?",
           element: <ClientProfile />,
+        },
+        {
+          path: "/explore",
+          element: <Explore />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+        {
+          path: "/about",
+          element: <About />,
         },
       ],
     },
