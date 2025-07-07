@@ -32,73 +32,158 @@
 // // }
 
 
+.footer {
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  color: #020202;
+  padding: 40px 0;
+  font-family: 'Segoe UI', sans-serif;
 
-.footer{
-    background-color: rgb(255, 255, 255);
-    opacity: 70%;
-    display: flex;
-    justify-content: center;
-    color: rgb(2, 2, 2);
+  img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
 
-    img{
-        width: 24px;
-        height: 24px;
+    &:hover {
+      transform: scale(1.1);
     }
-    .container{
-        width: 1400px;
-        .top{
-            display: flex;
-            justify-content: space-between;
+  }
 
-           .item{
-            display: flex;
-            flex-direction: column;
-            gap: 19px;
-            h2{
-                margin-top: 30px;
-                font-size: 17px;
-                color: rgb(0, 0, 0);
-            }
-            span{
-                font-weight: 300;
-            }
-           }
-        }
-        hr{
-            margin: 40px 0px;
-            margin-top: 20px;
-            height: 0;
-            border: 1px solid rgb(59, 56, 56);
-        }
-        .bottom{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .left{
-                display: flex;
-            align-items: center;
+  .container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 20px;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        gap: 19px;
+        flex: 1;
+        min-width: 200px;
+
+        h2 {
+          margin-top: 0;
+          font-size: 18px;
+          color: #000;
+          font-weight: 600;
+          position: relative;
+          padding-bottom: 8px;
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
             
-            span{
-                font-size: 20px;
-                color: rgb(18, 15, 15);
-                margin-top: -50px;
-            }
-
-            }
-            .right{
-                display: flex;
-            align-items: center;
-            gap:50px ;
-            margin-top: -50px;
-
-            .social{
-                display: flex;
-                align-items: center;
-                gap: 15px;
-            }
-            }
+          }
         }
+
+        /* REMOVED span STYLING - REPLACED WITH a TAGS */
+         a {
+      color: #333;
+      font-weight: 300;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.15s ease;
+      
+      &:hover {
+        color: #3498db;
+      }
     }
+
+        /* REMOVED redundant a selector since we're only using a tags now */
+      }
+    }
+
+    hr {
+      margin: 40px 0 20px;
+      height: 0;
+      border: none;
+      border-top: 1px solid rgba(59, 56, 56, 0.2);
+    }
+
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .left {
+        display: flex;
+        align-items: center;
+
+        span { /* This can stay as it's likely not a clickable element */
+          font-size: 16px;
+          color: #333;
+          margin-top: 0;
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .social {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          a { /* Style for social media links */
+            display: inline-block;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+
+        .link {
+          select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+          }
+        }
+      }
+    }
+  }
 }
 
+// Responsive adjustments
+@media (max-width: 768px) {
+  .footer {
+    .container {
+      .top {
+        flex-direction: column;
+        gap: 30px;
 
+        .item {
+          min-width: 100%;
+        }
+      }
+
+      .bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+
+        .left, .right {
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

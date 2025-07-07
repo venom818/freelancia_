@@ -1,84 +1,160 @@
-import React, { useState } from 'react';
-import './Contact.scss';
+import { useRefresh } from "@/contexts/refreshcontext";
+import React, { useState, useEffect } from "react";
+import "./Contact.scss";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    //subject: "", //as per the mid-defence
+    message: "",
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { refreshKey } = useRefresh();
+
+  useEffect(() => {
+    setFormData({ name: "", email: "", message: "" });
+    setErrors({ name: "", email: "", message: "" });
+    window.scrollTo({ top: 0, behavior: "smooth" }); // smooth scroll here
+  }, [refreshKey]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
+
+    // Re-validate the specific field on change
+    setErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+
+      if (name === "name") {
+        updatedErrors.name = value.trim() ? "" : "Name is required.";
+      }
+
+      if (name === "email") {
+        if (!value) {
+          updatedErrors.email = "Email is required.";
+        } else if (!validateEmail(value)) {
+          updatedErrors.email = "Please enter a valid email address.";
+        } else {
+          updatedErrors.email = "";
+        }
+      }
+
+      if (name === "message") {
+        updatedErrors.message = value.trim() ? "" : "Message is required.";
+      }
+
+      return updatedErrors;
+    });
+  };
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required.";
+    }
+
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required.";
+    }
+
+    setErrors(newErrors);
+
+    // Return true if no errors
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Stop submission if errors exist
+    }
+
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
-      alert('Thank you for your message! We will get back to you soon.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      alert("Thank you for your message! We will get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
       setIsSubmitting(false);
     }, 1000);
   };
 
   const contactInfo = [
     {
-      icon: '📧',
-      title: 'Email Us',
-      info: 'support@freelancia.com',
-      description: 'Get in touch with our support team'
+      icon: "📧",
+      title: "Email Us",
+      info: "support@freelancia.com",
+      description: "Get in touch with our support team",
     },
     {
-      icon: '📞',
-      title: 'Call Us',
-      info: '9867241332',
-      description: 'Speak with our customer service'
+      icon: "📞",
+      title: "Call Us",
+      info: "9867241332",
+      description: "Speak with our customer service",
     },
     {
-      icon: '📍',
-      title: 'Visit Us',
-      info: 'Manigram, Nepathya College',
-      description: 'Drop by our office anytime'
+      icon: "📍",
+      title: "Visit Us",
+      info: "Manigram, Nepathya College",
+      description: "Drop by our office anytime",
     },
     {
-      icon: '⏰',
-      title: 'Business Hours',
-      info: 'Mon - Fri: 9AM - 6PM',
-      description: 'We\'re here to help you'
-    }
+      icon: "⏰",
+      title: "Business Hours",
+      info: "Mon - Fri: 9AM - 6PM",
+      description: "We're here to help you",
+    },
   ];
 
   const faqs = [
     {
-      question: 'How do I create an account?',
-      answer: 'You can create an account by clicking the "Register" button in the top navigation. Choose between freelancer or client account based on your needs.'
+      question: "How do I create an account?",
+      answer:
+        'You can create an account by clicking the "Register" button in the top navigation. Choose between freelancer or client account based on your needs.',
     },
     {
-      question: 'How do I post a job?',
-      answer: 'After creating a client account, you can post jobs by clicking "Post Job" in your dashboard. Fill in the job details and requirements.'
+      question: "How do I post a job?",
+      answer:
+        'After creating a client account, you can post jobs by clicking "Post Job" in your dashboard. Fill in the job details and requirements.',
     },
     {
-      question: 'How do I apply for jobs?',
-      answer: 'As a freelancer, you can browse available jobs and submit proposals. Make sure your profile is complete to increase your chances.'
+      question: "How do I apply for jobs?",
+      answer:
+        "As a freelancer, you can browse available jobs and submit proposals. Make sure your profile is complete to increase your chances.",
     },
     {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our platform.'
+      question: "What payment methods do you accept?",
+      answer:
+        "We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our platform.",
     },
     {
-      question: 'How do I get paid for my work?',
-      answer: 'Once your project is completed and approved by the client, payment will be released to your account within 3-5 business days.'
-    }
+      question: "How do I get paid for my work?",
+      answer:
+        "Once your project is completed and approved by the client, payment will be released to your account within 3-5 business days.",
+    },
   ];
 
   return (
@@ -87,7 +163,10 @@ const Contact = () => {
       <div className="hero">
         <div className="hero-content">
           <h1>Get in Touch</h1>
-          <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+          <p>
+            We'd love to hear from you. Send us a message and we'll respond as
+            soon as possible.
+          </p>
         </div>
       </div>
 
@@ -98,61 +177,68 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="contact-form">
               <h2>Send us a Message</h2>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
                 <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
+                  <label htmlFor="name">
+                    Full Name <span className="required">*</span>
+                  </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    required
                     placeholder="Enter your full name"
                   />
+                  {errors.name && (
+                    <div className="error-text">{errors.name}</div>
+                  )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email Address *</label>
+                  <label htmlFor="email">
+                    Email Address <span className="required">*</span>
+                  </label>
                   <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    required
                     placeholder="Enter your email address"
                   />
+                  {errors.email && (
+                    <div className="error-text">{errors.email}</div>
+                  )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="subject">Subject *</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="What is this about?"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
+                  <label htmlFor="message">
+                    Message <span className="required">*</span>
+                  </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    required
                     placeholder="Tell us more about your inquiry..."
                     rows="6"
-                  ></textarea>
+                    maxLength={500}
+                  />
+                  <div className="char-counter">
+                    {formData.message.length}/500 characters
+                  </div>
+                  {errors.message && (
+                    <div className="error-text">{errors.message}</div>
+                  )}
                 </div>
 
-                <button type="submit" className="submit-btn" disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>
@@ -200,16 +286,27 @@ const Contact = () => {
             </div>
             <div className="info-card">
               <h3>Response Time</h3>
-              <p>We typically respond to inquiries within 24 hours during business days.</p>
+              <p>
+                We typically respond to inquiries within 24 hours during
+                business days.
+              </p>
               <p>For urgent matters, please call us directly.</p>
             </div>
             <div className="info-card">
               <h3>Follow Us</h3>
               <div className="social-links">
-                <a href="#" className="social-link">Facebook</a>
-                <a href="#" className="social-link">Twitter</a>
-                <a href="#" className="social-link">LinkedIn</a>
-                <a href="#" className="social-link">Instagram</a>
+                <a href="#" className="social-link">
+                  Facebook
+                </a>
+                <a href="#" className="social-link">
+                  Twitter
+                </a>
+                <a href="#" className="social-link">
+                  LinkedIn
+                </a>
+                <a href="#" className="social-link">
+                  Instagram
+                </a>
               </div>
             </div>
           </div>
@@ -219,4 +316,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;
