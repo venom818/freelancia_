@@ -124,15 +124,16 @@ import "./Navbar.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "@/api/auth";
 import NavLinkToTop from "../navlinktotop";
+
 const Navbar = () => {
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false); //menu click huda ko functionality
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser")); //Get from localStorage
 
   const isActive = () => {
-    window.scrollY > 0 ? setActive(true) : setActive(false);
+    setActive(window.scrollY > 0);
   };
 
   useEffect(() => {
@@ -144,21 +145,23 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     localStorage.removeItem("currentUser");
-    let token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
     try {
       await logout(token);
       console.log("logout successful");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
+
   // when clicking on profile options menu apprea so this is currenr user
   // const currentUser={
   //     id:1,
   //     username: "Ariana",
   //     isFreelancer: true, //if you are not Freelancer you wont see the menu
   // }
+
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       {/* yedi homepage haina thin line option active hunxa always aru page ma  */}
@@ -181,22 +184,22 @@ const Navbar = () => {
           </NavLinkToTop>
 
           {!currentUser && (
-            <Link className="link" to="/login">
+            <NavLinkToTop to="/login" className="link">
               Login In
-            </Link>
+            </NavLinkToTop>
           )}
           {/* //if curerent user is Freelancer dont show this links */}
           {!currentUser && (
-            <Link className="link" to="/register">
+            <NavLinkToTop to="/register" className="link">
               <button>Register</button>
-            </Link>
+            </NavLinkToTop>
           )}
           {/* //if you are current user you wont see this button */}
           {currentUser && (
             <div className="user" onClick={() => setOpen(!open)}>
               <img
                 src="https://www.billboard.com/wp-content/uploads/2022/08/Ariana-Grande-the-voice-2021-billboard-1548.jpg?w=875&h=583&crop=1"
-                alt=""
+                alt={currentUser?.username || "user avatar"}
               />
               <span>{currentUser?.username}</span>
               {open && (
@@ -276,4 +279,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;
