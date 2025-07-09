@@ -175,7 +175,7 @@ const Navbar = () => {
           <Link to="/explore" className="link">Explore More</Link>
           {!currentUser && (
             <Link className="link" to="/login">
-              Login In
+              Login
             </Link>
           )}
           {/* //if curerent user is Freelancer dont show this links */}

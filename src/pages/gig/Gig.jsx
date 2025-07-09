@@ -191,21 +191,17 @@ const Gig = () => {
                   <div className="country">
                     {" "}
                     {/* Corrected class name to 'country' */}
-                    <img src="https://flagpedia.net/data/flags/icon/96x54/us.png" alt="" />
+                    {/* <img src="https://flagpedia.net/data/flags/icon/96x54/us.png" alt="" /> */}
                     <span>Antartica</span>
                   </div>
                 </div>
               </div>
               <div className="stars">
-                <img src="/img/5stars.png" alt="" />
+                {/* <img src="/img/5stars.png" alt="" /> */}
                 {/* <span>5</span> */}
               </div>
               <p>
-                I just want to say that wet with ai was the first and after this
-                the only artist I'll be using on freeancia. Communication was amazing
-                each and every day they sent me images that I was free to request
-                changes to. They listened, understood, and delivered above and beyond my expectations.
-                I absolutely recommend this gig and know already that I will be back.
+              "Great service! The freelancer delivered the project on time and followed all my requirements. There were a few minor revisions needed, but they handled them quickly. Would definitely recommend for quality work."
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
@@ -237,11 +233,7 @@ const Gig = () => {
                 {/* <span>5</span> */}
               </div>
               <p>
-                I just want to say that wet with ai was the first and after this
-                the only artist I'll be using on freeancia. Communication was amazing
-                each and every day they sent me images that I was free to request
-                changes to. They listened, understood, and delivered above and beyond my expectations.
-                I absolutely recommend this gig and know already that I will be back.
+              "The project was completed within the deadline, and the quality met my expectations. There was one small hiccup, but the freelancer resolved it promptly. Trustworthy and skilled—would work with them again!"
               </p>
               <div className="helpful">
                 <span>Helpful?</span>

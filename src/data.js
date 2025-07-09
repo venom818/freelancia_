@@ -470,7 +470,7 @@ export const gigs = [
     id: 1,
     img: "https://i.pinimg.com/1200x/05/da/54/05da544ed543f401e615e35814d65028.jpg",
     pp: "https://images.pexels.com/photos/720598/pexels-photo-720598.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    desc: "I will create professional Logo for you.(Monogram, Negative Space and many more.",
+    desc: "I will create professional Logo for you.(Monogram, Negative Space.",
     price: 59,
     username: "Sonu Nigam",
   },

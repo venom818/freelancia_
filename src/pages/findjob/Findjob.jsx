@@ -315,9 +315,7 @@
 // }
 // export default Findjob
 
-
-
-//make is like that
+//
 import { useState, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -393,13 +391,10 @@ const Findjob = () => {
     ]
     setJobs(dummyJobs)
   }, [])
-
   const handleSearch = (event) => {
     setSearchTerm(event.target.value)
   }
-
   const filteredJobs = jobs.filter((job) => job.title.toLowerCase().includes(searchTerm.toLowerCase()))
-
   const handleSubmitProposal = (e, job) => {
     e.preventDefault()
     // Handle proposal submission logic here
@@ -550,7 +545,6 @@ const Findjob = () => {
                   className="form-textarea"
                 />
               </div>
-
               <div className="form-actions">
                 <button type="button" onClick={() => setShowBidModal(false)} className="cancel-button">
                   Cancel
@@ -567,6 +561,6 @@ const Findjob = () => {
     </div>
   )
 }
-
 export default Findjob
+
 

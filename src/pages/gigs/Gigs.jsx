@@ -12,29 +12,23 @@ const reSort = (type) =>{ //taking type from user
     setSort(type); // setting state
     setOpen(false); //close menu when we click one of them
 }
-
 const applyBudgetFilter = () => {
     let filtered = gigs;
-    
     if (minBudget !== "" || maxBudget !== "") {
         filtered = gigs.filter(gig => {
             const price = gig.price;
             const min = minBudget === "" ? 0 : parseInt(minBudget);
-            const max = maxBudget === "" ? Infinity : parseInt(maxBudget);
-            
+            const max = maxBudget === "" ? Infinity : parseInt(maxBudget);    
             return price >= min && price <= max;
         });
     }
-    
     setFilteredGigs(filtered);
 }
-
 const clearFilters = () => {
     setMinBudget("");
     setMaxBudget("");
     setFilteredGigs(gigs);
 }
-
     return (
         <div className="gigs">
           <div className="container">
