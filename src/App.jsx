@@ -1,33 +1,45 @@
-import Navbar from "./components/navbar/Navbar"
-import Footer from "./components/footer/Footer"
-import Home from "./pages/home/Home"
-import Gigs from "./pages/gigs/Gigs"
-import Orders from "./pages/orders/Orders"
-import Mygigs from "./pages/mygigs/Mygigs"
-import Gig from "./pages/gig/Gig"
-import Add from "./pages/add/Add"
-import Messages from "./pages/messages/Messages"
-import Message from "./pages/message/Message"
-import Login from "./pages/login/Login"
-import Register from "./pages/register/Register"
-import Findjob from "./pages/findjob/Findjob"
-import Postjob from "./pages/postjob/Postjob"
-import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
-import "./App.scss"
-import FreelancerProfileCreation from "./pages/profile/freelancer/FreelancerProfileCreation"
-import ClientProfileCreation from "./pages/profile/client/ClientProfileCreation"
-import FreelancerProfile from "./pages/profile/view/FreelancerProfile"
-import ClientProfile from "./pages/profile/view/ClientProfile"
-import Explore from "./pages/explore/Explore"
-import Contact from "./pages/contact/Contact"
-import About from "./pages/about/About"
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
+import Home from "./pages/home/Home";
+import Gigs from "./pages/gigs/Gigs";
+import Orders from "./pages/orders/Orders";
+import Mygigs from "./pages/mygigs/Mygigs";
+import Gig from "./pages/gig/Gig";
+import Add from "./pages/add/Add";
+import Messages from "./pages/messages/Messages";
+import Message from "./pages/message/Message";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Findjob from "./pages/findjob/Findjob";
+import Postjob from "./pages/postjob/Postjob";
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import "./App.scss";
+import FreelancerProfileCreation from "./pages/profile/freelancer/FreelancerProfileCreation";
+import ClientProfileCreation from "./pages/profile/client/ClientProfileCreation";
+import FreelancerProfile from "./pages/profile/view/FreelancerProfile";
+import ClientProfile from "./pages/profile/view/ClientProfile";
+import Explore from "./pages/explore/Explore";
+import Contact from "./pages/contact/Contact";
+import About from "./pages/about/About";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const Layout = () => {
-    const location = useLocation()
+    const location = useLocation();
     return (
-      <div className="app" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div
+        className="app"
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <ScrollToTop />
+
         <Navbar />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
@@ -41,11 +53,10 @@ function App() {
             <Outlet />
           </motion.div>
         </AnimatePresence>
-
         <Footer />
       </div>
-    )
-  }
+    );
+  };
   //adding router
   const router = createBrowserRouter([
     {
@@ -130,13 +141,13 @@ function App() {
         },
       ],
     },
-  ]) // router added
+  ]); // router added
 
   return (
     <div>
       {/* <Navbar/>  //yo nav bar hatayae paxi balla logo click garda automatically home ma gayp */}
       <RouterProvider router={router} />
     </div>
-  )
+  );
 }
-export default App
+export default App;

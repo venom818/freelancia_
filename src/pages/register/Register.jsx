@@ -1,10 +1,13 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useToast } from "../../hooks/useToast"
-import { register } from "../../api/auth"
-import "./Register.scss"
+import { useState, useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
+import { useToast } from "../../hooks/useToast";
+import { register } from "../../api/auth";
+import "./Register.scss";
+import { useRefresh } from "@/contexts/refreshcontext";
 
 function Register() {
+  const { refreshKey } = useRefresh();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -12,39 +15,50 @@ function Register() {
     password: "",
     confirmPassword: "",
     userType: "freelancer",
-  })
-  const [loading, setLoading] = useState(false)
-  const { showToast } = useToast()
-  const navigate = useNavigate()
+  });
+  const [loading, setLoading] = useState(false);
+  const { showToast } = useToast();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      userType: "freelancer",
+    });
+  }, [refreshKey]);
 
   const handleChange = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
     // Validation
     if (!formData.firstName || !formData.lastName) {
-      showToast("Please enter your full name", "error")
-      setLoading(false)
-      return
+      showToast("Please enter your full name", "error");
+      setLoading(false);
+      return;
     }
     if (!formData.email || !formData.email.includes("@")) {
-      showToast("Please enter a valid email", "error")
-      setLoading(false)
-      return
+      showToast("Please enter a valid email", "error");
+      setLoading(false);
+      return;
     }
     if (formData.password.length < 6) {
-      showToast("Password must be at least 6 characters", "error")
-      setLoading(false)
-      return
+      showToast("Password must be at least 6 characters", "error");
+      setLoading(false);
+      return;
     }
     if (formData.password !== formData.confirmPassword) {
-      showToast("Passwords do not match", "error")
-      setLoading(false)
-      return
+      showToast("Passwords do not match", "error");
+      setLoading(false);
+      return;
     }
 
     try {
@@ -62,25 +76,28 @@ function Register() {
         email: formData.email,
         password: formData.password,
         role: formData.userType,
-      })
+      });
 
-      localStorage.setItem("currentUser", JSON.stringify("freelancer"))
+      localStorage.setItem("currentUser", JSON.stringify("freelancer"));
 
-      localStorage.setItem("token", JSON.stringify(response.token))
-      showToast("Registration successful! Please complete your profile.", "success")
+      localStorage.setItem("token", JSON.stringify(response.token));
+      showToast(
+        "Registration successful! Please complete your profile.",
+        "success"
+      );
 
       // Navigate to profile creation based on user type
       if (formData.userType === "freelancer") {
-        navigate("/create-freelancer-profile")
+        navigate("/create-freelancer-profile");
       } else {
-        navigate("/create-client-profile")
+        navigate("/create-client-profile");
       }
     } catch (error) {
-      showToast("Registration failed. Please try again.", "error")
+      showToast("Registration failed. Please try again.", "error");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="register">
@@ -96,7 +113,11 @@ function Register() {
               <span>I want to:</span>
             </div>
             <div className="selector-options">
-              <label className={`option ${formData.userType === "freelancer" ? "active" : ""}`}>
+              <label
+                className={`option ${
+                  formData.userType === "freelancer" ? "active" : ""
+                }`}
+              >
                 <input
                   type="radio"
                   name="userType"
@@ -112,7 +133,11 @@ function Register() {
                   </div>
                 </div>
               </label>
-              <label className={`option ${formData.userType === "client" ? "active" : ""}`}>
+              <label
+                className={`option ${
+                  formData.userType === "client" ? "active" : ""
+                }`}
+              >
                 <input
                   type="radio"
                   name="userType"
@@ -209,7 +234,7 @@ function Register() {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

@@ -60,6 +60,12 @@
             font-weight: 600;
             color: #333;
           }
+          .required {
+  color: red;
+  margin-left: 2px; // optional, for spacing
+  font-weight: bold; // optional, to make it stand out
+}
+
 
           input,
           textarea {
@@ -82,12 +88,45 @@
               color: #999;
             }
           }
+          .error-text {
+  color: #f44336;
+  font-size: 0.9rem;
+  margin-top: 6px;
+  font-weight: 500
+}
+
 
           textarea {
             resize: vertical;
             min-height: 120px;
           }
         }
+        // Add this right after your textarea styles in .form-group
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+  
+  // Change color when approaching limit
+  &:has(+ textarea:focus) {
+    color: #24b967;
+  }
+  
+  // Warning style when near limit
+  @for $i from 400 through 500 {
+    &:has(+ textarea[value*="#{$i}"]) {
+      color: #ff9800;
+    }
+  }
+  
+  // Error style at limit
+  &:has(+ textarea[value*="500"]) {
+    color: #f44336;
+    font-weight: 600;
+  }
+}
 
         .submit-btn {
           width: 100%;
@@ -168,6 +207,7 @@
                 font-size: 0.9rem;
                 line-height: 1.4;
               }
+
             }
           }
         }
