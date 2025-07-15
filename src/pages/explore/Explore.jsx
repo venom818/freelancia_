@@ -1,100 +1,116 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Explore.scss';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Explore.scss";
 
 const Explore = () => {
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/gigs?search=${encodeURIComponent(searchTerm.trim())}`);
+    }
+  };
   const categories = [
     {
       id: 1,
-      title: 'Graphics & Design',
-      icon: '🎨',
-      description: 'Logo design, branding, illustrations',
-      color: '#FF6B6B'
+      title: "Graphics & Design",
+      key: "graphics", // must match gig.category content
+      icon: "🎨",
+      description: "Logo design, branding, illustrations",
+      color: "#FF6B6B",
     },
     {
       id: 2,
-      title: 'Programming & Tech',
-      icon: '💻',
-      description: 'Web development, mobile apps, software',
-      color: '#4ECDC4'
+      title: "Programming & Tech",
+      key: "programming",
+      icon: "💻",
+      description: "Web development, mobile apps, software",
+      color: "#4ECDC4",
     },
     {
       id: 3,
-      title: 'Digital Marketing',
-      icon: '📈',
-      description: 'SEO, social media, advertising',
-      color: '#45B7D1'
+      title: "Digital Marketing",
+      key: "marketing",
+      icon: "📈",
+      description: "SEO, social media, advertising",
+      color: "#45B7D1",
     },
     {
       id: 4,
-      title: 'Writing & Translation',
-      icon: '✍️',
-      description: 'Content writing, translation, editing',
-      color: '#96CEB4'
+      title: "Writing & Translation",
+      key: "writing",
+      icon: "✍️",
+      description: "Content writing, translation, editing",
+      color: "#96CEB4",
     },
     {
       id: 5,
-      title: 'Video & Animation',
-      icon: '🎬',
-      description: 'Video editing, motion graphics, animation',
-      color: '#FFEAA7'
+      title: "Video & Animation",
+      key: "video editing", // this is the key you missed!
+      icon: "🎬",
+      description: "Video editing, motion graphics, animation",
+      color: "#FFEAA7",
     },
     {
       id: 6,
-      title: 'Music & Audio',
-      icon: '🎵',
-      description: 'Voice over, music production, sound design',
-      color: '#DDA0DD'
+      title: "Music & Audio",
+      key: "voiceover", // or "music" depending on your gig.category
+      icon: "🎵",
+      description: "Voice over, music production, sound design",
+      color: "#DDA0DD",
     },
     {
       id: 7,
-      title: 'AI Services',
-      icon: '🤖',
-      description: 'AI development, machine learning, automation',
-      color: '#98D8C8'
+      title: "AI Services",
+      key: "ai",
+      icon: "🤖",
+      description: "AI development, machine learning, automation",
+      color: "#98D8C8",
     },
     {
       id: 8,
-      title: 'Business Services',
-      icon: '💼',
-      description: 'Consulting, virtual assistance, accounting',
-      color: '#F7DC6F'
-    }
+      title: "Business Services",
+      key: "business",
+      icon: "💼",
+      description: "Consulting, virtual assistance, accounting",
+      color: "#F7DC6F",
+    },
   ];
 
   const featuredServices = [
     {
       id: 1,
-      title: 'Professional Logo Design',
-      freelancer: 'Sarah Design',
+      title: "Professional Logo Design",
+      freelancer: "Sarah Design",
       rating: 5,
-      price: '$50',
-      image: '/img/art.jpg'
+      price: "$50",
+      image: "/img/art.jpg",
     },
     {
       id: 2,
-      title: 'Website Development',
-      freelancer: 'Tech Solutions',
+      title: "Website Development",
+      freelancer: "Tech Solutions",
       rating: 5,
-      price: '$200',
-      image: '/img/web.jpg'
+      price: "$200",
+      image: "/img/web.jpg",
     },
     {
       id: 3,
-      title: 'Social Media Marketing',
-      freelancer: 'Digital Pro',
+      title: "Social Media Marketing",
+      freelancer: "Digital Pro",
       rating: 4,
-      price: '$100',
-      image: '/img/beautiful3.jpg'
+      price: "$100",
+      image: "/img/beautiful3.jpg",
     },
     {
       id: 4,
-      title: 'Content Writing',
-      freelancer: 'Word Smith',
+      title: "Content Writing",
+      freelancer: "Word Smith",
       rating: 5,
-      price: '$75',
-      image: '/img/beautiful4.jpg'
-    }
+      price: "$75",
+      image: "/img/beautiful4.jpg",
+    },
   ];
 
   return (
@@ -103,10 +119,21 @@ const Explore = () => {
       <div className="hero">
         <div className="hero-content">
           <h1>Explore Amazing Services</h1>
-          <p>Discover talented freelancers and get your projects done with excellence</p>
+          <p>
+            Discover talented freelancers and get your projects done with
+            excellence
+          </p>
           <div className="search-box">
-            <input type="text" placeholder="What service are you looking for?" />
-            <button>Search</button>
+            <input
+              type="text"
+              placeholder="What service are you looking for?"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+            />
+            <button onClick={handleSearch}>Search</button>
           </div>
         </div>
       </div>
@@ -117,13 +144,23 @@ const Explore = () => {
           <h2>Browse by Category</h2>
           <div className="categories-grid">
             {categories.map((category) => (
-              <div key={category.id} className="category-card" style={{ borderColor: category.color }}>
-                <div className="category-icon" style={{ backgroundColor: category.color }}>
+              <div
+                key={category.id}
+                className="category-card"
+                style={{ borderColor: category.color }}
+              >
+                <div
+                  className="category-icon"
+                  style={{ backgroundColor: category.color }}
+                >
                   <span>{category.icon}</span>
                 </div>
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>
-                <Link to={`/gigs?category=${category.title.toLowerCase()}`} className="explore-btn">
+                <Link
+                  to={`/gigs?category=${encodeURIComponent(category.key)}`}
+                  className="explore-btn"
+                >
                   Explore
                 </Link>
               </div>
@@ -147,7 +184,9 @@ const Explore = () => {
                   <p className="freelancer">by {service.freelancer}</p>
                   <div className="rating">
                     {[...Array(service.rating)].map((_, i) => (
-                      <span key={i} className="star">⭐</span>
+                      <span key={i} className="star">
+                        ⭐
+                      </span>
                     ))}
                   </div>
                   <div className="price">Starting at {service.price}</div>
@@ -189,10 +228,16 @@ const Explore = () => {
       <div className="cta-section">
         <div className="container">
           <h2>Ready to Start Your Project?</h2>
-          <p>Join thousands of satisfied clients who found the perfect freelancer</p>
+          <p>
+            Join thousands of satisfied clients who found the perfect freelancer
+          </p>
           <div className="cta-buttons">
-            <Link to="/register" className="cta-btn primary">Get Started</Link>
-            <Link to="/gigs" className="cta-btn secondary">Browse Services</Link>
+            <Link to="/register" className="cta-btn primary">
+              Get Started
+            </Link>
+            <Link to="/gigs" className="cta-btn secondary">
+              Browse Services
+            </Link>
           </div>
         </div>
       </div>

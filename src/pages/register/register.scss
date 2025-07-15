@@ -11,7 +11,7 @@
   padding: 20px;
 
   .register-container {
-    background: white;
+    
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -161,6 +161,53 @@
             color: #a0aec0;
           }
         }
+        .error-text {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  padding: 4px 8px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid #ff6b6b;
+  animation: fadeIn 0.3s ease;
+}
+
+           .error-message {
+          color: #ff6b6b;
+          font-size: 0.8rem;
+          margin-top: 6px;
+          padding: 4px 8px;
+          background: rgba(255, 107, 107, 0.1);
+          border-radius: 4px;
+          border-left: 3px solid #ff6b6b;
+          animation: fadeIn 0.3s ease;
+        }
+         .password-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.75rem;
+
+  span {
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: #e8e8e8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &.valid {
+      color: #24b967;
+      background: rgba(36, 185, 103, 0.15);
+      border-color: rgba(36, 185, 103, 0.3);
+    }
+    &.invalid {
+      opacity: 0.7;
+    }
+  }
+}
+
       }
 
       .register-btn {
@@ -203,10 +250,19 @@
             &:hover {
               color: #24b967;
               text-decoration: underline;
+
             }
+
           }
         }
       }
+      
     }
   }
+   @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+   }
+ 
+  
 }

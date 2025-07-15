@@ -1,13 +1,20 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../hooks/useToast";
 import { register } from "../../api/auth";
-import "./Register.scss";
 import { useRefresh } from "@/contexts/refreshcontext";
+import UserTypeSelector from "@/components/Formfill/UserTypeSelector";
+import EmailField from "@/components/Formfill/EmailField";
+import NameFields from "@/components/Formfill/NameFields";
+import PasswordFields from "@/components/Formfill/PasswordFields";
+import "./Register.scss";
+import { Link } from "react-router-dom";
 
 function Register() {
   const { refreshKey } = useRefresh();
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,9 +23,10 @@ function Register() {
     confirmPassword: "",
     userType: "freelancer",
   });
+
+  const [errors, setErrors] = useState({});
+  const [fieldTouched, setFieldTouched] = useState({});
   const [loading, setLoading] = useState(false);
-  const { showToast } = useToast();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setFormData({
@@ -29,49 +37,63 @@ function Register() {
       confirmPassword: "",
       userType: "freelancer",
     });
+    setErrors({});
+    setFieldTouched({});
   }, [refreshKey]);
+
+  const validatePassword = (password) => {
+    const errors = [];
+    if (!password) return ["Password is required"];
+    if (password.length < 8) errors.push("at least 8 characters");
+    if (!/[A-Z]/.test(password)) errors.push("one uppercase letter");
+    if (!/[a-z]/.test(password)) errors.push("one lowercase letter");
+    if (!/[0-9]/.test(password)) errors.push("one number");
+    if (!/[!@#$%^&*]/.test(password)) errors.push("one special character");
+    return errors;
+  };
+
+  const validateFields = () => {
+    const newErrors = {};
+
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required.";
+    if (!formData.lastName.trim())
+      newErrors.lastName = "Last name is required.";
+
+    if (!formData.email.trim()) newErrors.email = "Email is required.";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Email is invalid.";
+
+    const passwordErrors = validatePassword(formData.password);
+    if (passwordErrors.length > 0)
+      newErrors.password = "Password must have: " + passwordErrors.join(", ");
+
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const handleBlur = (field) => {
+    setFieldTouched((prev) => ({ ...prev, [field]: true }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateFields()) {
+      showToast("Please fix the errors in the form", "error");
+      return;
+    }
+
     setLoading(true);
-
-    // Validation
-    if (!formData.firstName || !formData.lastName) {
-      showToast("Please enter your full name", "error");
-      setLoading(false);
-      return;
-    }
-    if (!formData.email || !formData.email.includes("@")) {
-      showToast("Please enter a valid email", "error");
-      setLoading(false);
-      return;
-    }
-    if (formData.password.length < 6) {
-      showToast("Password must be at least 6 characters", "error");
-      setLoading(false);
-      return;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      showToast("Passwords do not match", "error");
-      setLoading(false);
-      return;
-    }
-
     try {
-      // For demo purposes, simulate successful registration
-      // const mockUser = {
-      //   id: Date.now(),
-      //   firstName: formData.firstName,
-      //   lastName: formData.lastName,
-      //   email: formData.email,
-      //   isFreelancer: formData.userType === "freelancer",
-      //   profileComplete: false,
-      // }
-
       const response = await register({
         email: formData.email,
         password: formData.password,
@@ -79,20 +101,19 @@ function Register() {
       });
 
       localStorage.setItem("currentUser", JSON.stringify("freelancer"));
-
       localStorage.setItem("token", JSON.stringify(response.token));
+
       showToast(
         "Registration successful! Please complete your profile.",
         "success"
       );
 
-      // Navigate to profile creation based on user type
-      if (formData.userType === "freelancer") {
-        navigate("/create-freelancer-profile");
-      } else {
-        navigate("/create-client-profile");
-      }
-    } catch (error) {
+      navigate(
+        formData.userType === "freelancer"
+          ? "/create-freelancer-profile"
+          : "/create-client-profile"
+      );
+    } catch {
       showToast("Registration failed. Please try again.", "error");
     } finally {
       setLoading(false);
@@ -102,125 +123,40 @@ function Register() {
   return (
     <div className="register">
       <div className="register-container">
-        <form onSubmit={handleSubmit} className="register-form">
+        <form onSubmit={handleSubmit} className="register-form" noValidate>
           <div className="form-header">
             <h1>Join Freelancia</h1>
             <p>Create your account and start your journey</p>
           </div>
 
-          <div className="user-type-selector">
-            <div className="selector-header">
-              <span>I want to:</span>
-            </div>
-            <div className="selector-options">
-              <label
-                className={`option ${
-                  formData.userType === "freelancer" ? "active" : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="userType"
-                  value="freelancer"
-                  checked={formData.userType === "freelancer"}
-                  onChange={(e) => handleChange("userType", e.target.value)}
-                />
-                <div className="option-content">
-                  <div className="option-icon">💼</div>
-                  <div className="option-text">
-                    <span className="title">Work as Freelancer</span>
-                    <span className="desc">Offer services and earn money</span>
-                  </div>
-                </div>
-              </label>
-              <label
-                className={`option ${
-                  formData.userType === "client" ? "active" : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="userType"
-                  value="client"
-                  checked={formData.userType === "client"}
-                  onChange={(e) => handleChange("userType", e.target.value)}
-                />
-                <div className="option-content">
-                  <div className="option-icon">🎯</div>
-                  <div className="option-text">
-                    <span className="title">Hire Freelancers</span>
-                    <span className="desc">Find talent for your projects</span>
-                  </div>
-                </div>
-              </label>
-            </div>
-          </div>
+          <UserTypeSelector
+            userType={formData.userType}
+            onChange={(value) => handleChange("userType", value)}
+          />
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                placeholder="Enter first name"
-                value={formData.firstName}
-                onChange={(e) => handleChange("firstName", e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                placeholder="Enter last name"
-                value={formData.lastName}
-                onChange={(e) => handleChange("lastName", e.target.value)}
-                required
-              />
-            </div>
-          </div>
+          <NameFields
+            firstName={formData.firstName}
+            lastName={formData.lastName}
+            onChange={handleChange}
+            errors={errors}
+            onBlur={handleBlur}
+          />
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) => handleChange("email", e.target.value)}
-              required
-            />
-          </div>
+          <EmailField
+            email={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+            onBlur={() => handleBlur("email")}
+          />
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Create a password"
-              value={formData.password}
-              onChange={(e) => handleChange("password", e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              value={formData.confirmPassword}
-              onChange={(e) => handleChange("confirmPassword", e.target.value)}
-              required
-            />
-          </div>
+          <PasswordFields
+            password={formData.password}
+            confirmPassword={formData.confirmPassword}
+            onChange={handleChange}
+            errors={errors}
+            onBlur={handleBlur}
+            validatePassword={validatePassword}
+          />
 
           <button type="submit" className="register-btn" disabled={loading}>
             {loading ? "Creating Account..." : "Create Account"}
@@ -228,7 +164,7 @@ function Register() {
 
           <div className="form-footer">
             <p>
-              Already have an account? <a href="/login">Sign in here</a>
+              Already have an account? <Link to="/login">Sign in here</Link>
             </p>
           </div>
         </form>

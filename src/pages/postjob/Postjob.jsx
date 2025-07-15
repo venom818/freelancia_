@@ -638,22 +638,19 @@
 // }
 // export default PostProjectPage
 
-
-
-
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useToast } from "../../hooks/useToast"
-import { CheckCircle, Upload, DollarSign } from "lucide-react"
-import "./Postjob.scss"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "../../hooks/useToast";
+import { CheckCircle, Upload, DollarSign } from "lucide-react";
+import "./Postjob.scss";
 
 const PostProjectPage = () => {
-  const navigate = useNavigate()
-  const { showToast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [postedProject, setPostedProject] = useState(null)
-  
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [postedProject, setPostedProject] = useState(null);
+
   // Simplified form data
   const [formData, setFormData] = useState({
     title: "",
@@ -665,81 +662,87 @@ const PostProjectPage = () => {
     experienceLevel: "intermediate",
     featured: false,
     urgent: false,
-  })
+  });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   // Simple input change handler
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [field]: value,
-    }))
-    
+    }));
+
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [field]: "",
-      }))
+      }));
     }
-  }
+  };
 
   // Simple form validation
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.title.trim()) {
-      newErrors.title = "Project title is required"
+      newErrors.title = "Project title is required";
     }
 
     if (!formData.category) {
-      newErrors.category = "Please select a category"
+      newErrors.category = "Please select a category";
     }
 
     if (!formData.description.trim()) {
-      newErrors.description = "Project description is required"
+      newErrors.description = "Project description is required";
     }
 
     if (!formData.minBudget || !formData.maxBudget) {
-      newErrors.budget = "Budget range is required"
+      newErrors.budget = "Budget range is required";
+    } else if (
+      parseFloat(formData.minBudget) >= parseFloat(formData.maxBudget)
+    ) {
+      newErrors.budget = "Min budget must be less than max budget";
     }
 
     if (!formData.timeline) {
-      newErrors.timeline = "Project timeline is required"
+      newErrors.timeline = "Project timeline is required";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   // Calculate additional costs
   const getAdditionalCost = () => {
-    let total = 0
-    if (formData.featured) total += 19
-    if (formData.urgent) total += 9
-    return total
-  }
+    let total = 0;
+    if (formData.featured) total += 19;
+    if (formData.urgent) total += 9;
+    return total;
+  };
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!validateForm()) {
-      showToast("Please fix the errors in the form", "error")
-      return
+      showToast("Please fix the errors in the form", "error");
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
       // Get current user
-      const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}")
+      const currentUser = JSON.parse(
+        localStorage.getItem("currentUser") || "{}"
+      );
 
       if (!currentUser.id) {
-        showToast("Please log in to post a project", "error")
-        navigate("/login")
-        return
+        showToast("Please log in to post a project", "error");
+        navigate("/login");
+        return;
       }
 
       // Create new project
@@ -757,38 +760,40 @@ const PostProjectPage = () => {
         clientName: `${currentUser.firstName} ${currentUser.lastName}`,
         featured: formData.featured,
         urgent: formData.urgent,
-      }
+      };
 
       // Save to localStorage
-      const existingJobs = JSON.parse(localStorage.getItem("postedJobs") || "[]")
-      const updatedJobs = [newProject, ...existingJobs]
-      localStorage.setItem("postedJobs", JSON.stringify(updatedJobs))
+      const existingJobs = JSON.parse(
+        localStorage.getItem("postedJobs") || "[]"
+      );
+      const updatedJobs = [newProject, ...existingJobs];
+      localStorage.setItem("postedJobs", JSON.stringify(updatedJobs));
 
       // Update user stats
       const updatedUser = {
         ...currentUser,
         totalProjectsPosted: (currentUser.totalProjectsPosted || 0) + 1,
-      }
-      localStorage.setItem("currentUser", JSON.stringify(updatedUser))
+      };
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      setPostedProject(newProject)
-      setShowSuccess(true)
-      showToast("Project posted successfully!", "success")
+      setPostedProject(newProject);
+      setShowSuccess(true);
+      showToast("Project posted successfully!", "success");
     } catch (error) {
-      console.error("Error posting project:", error)
-      showToast("Failed to post project. Please try again.", "error")
+      console.error("Error posting project:", error);
+      showToast("Failed to post project. Please try again.", "error");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   // Reset form
   const handlePostAnother = () => {
-    setShowSuccess(false)
-    setPostedProject(null)
+    setShowSuccess(false);
+    setPostedProject(null);
     setFormData({
       title: "",
       category: "",
@@ -799,9 +804,9 @@ const PostProjectPage = () => {
       experienceLevel: "intermediate",
       featured: false,
       urgent: false,
-    })
-    setErrors({})
-  }
+    });
+    setErrors({});
+  };
 
   // Success page
   if (showSuccess && postedProject) {
@@ -813,7 +818,10 @@ const PostProjectPage = () => {
               <CheckCircle />
             </div>
             <h1>Project Posted Successfully!</h1>
-            <p>Your project is now live and freelancers can start submitting proposals.</p>
+            <p>
+              Your project is now live and freelancers can start submitting
+              proposals.
+            </p>
 
             <div className="project-summary">
               <h3>Project Summary</h3>
@@ -836,7 +844,10 @@ const PostProjectPage = () => {
             </div>
 
             <div className="success-actions">
-              <button onClick={() => navigate("/dashboard")} className="btn-primary">
+              <button
+                onClick={() => navigate("/dashboard")}
+                className="btn-primary"
+              >
                 Go to Dashboard
               </button>
               <button onClick={handlePostAnother} className="btn-secondary">
@@ -846,7 +857,7 @@ const PostProjectPage = () => {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -855,7 +866,9 @@ const PostProjectPage = () => {
         {/* Header */}
         <div className="header">
           <h1>Post a Project</h1>
-          <p>Tell us what you need done and receive free quotes from freelancers</p>
+          <p>
+            Tell us what you need done and receive free quotes from freelancers
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="form">
@@ -864,7 +877,10 @@ const PostProjectPage = () => {
             <div className="form-section">
               <div className="form-card">
                 <h2>Project Details</h2>
-                <p>Provide details about your project to attract the right freelancers</p>
+                <p>
+                  Provide details about your project to attract the right
+                  freelancers
+                </p>
 
                 {/* Project Title */}
                 <div className="form-group">
@@ -877,7 +893,9 @@ const PostProjectPage = () => {
                     value={formData.title}
                     onChange={(e) => handleInputChange("title", e.target.value)}
                   />
-                  {errors.title && <span className="error-text">{errors.title}</span>}
+                  {errors.title && (
+                    <span className="error-text">{errors.title}</span>
+                  )}
                 </div>
 
                 {/* Category */}
@@ -887,18 +905,24 @@ const PostProjectPage = () => {
                     id="category"
                     className={errors.category ? "error" : ""}
                     value={formData.category}
-                    onChange={(e) => handleInputChange("category", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("category", e.target.value)
+                    }
                   >
                     <option value="">Select a category</option>
                     <option value="web-development">Web Development</option>
-                    <option value="mobile-development">Mobile Development</option>
+                    <option value="mobile-development">
+                      Mobile Development
+                    </option>
                     <option value="design">Design & Creative</option>
                     <option value="writing">Writing & Translation</option>
                     <option value="marketing">Digital Marketing</option>
                     <option value="data">Data Science & Analytics</option>
                     <option value="admin">Admin Support</option>
                   </select>
-                  {errors.category && <span className="error-text">{errors.category}</span>}
+                  {errors.category && (
+                    <span className="error-text">{errors.category}</span>
+                  )}
                 </div>
 
                 {/* Project Description */}
@@ -909,10 +933,14 @@ const PostProjectPage = () => {
                     placeholder="Describe your project in detail..."
                     className={errors.description ? "error" : ""}
                     value={formData.description}
-                    onChange={(e) => handleInputChange("description", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("description", e.target.value)
+                    }
                     rows={6}
                   />
-                  {errors.description && <span className="error-text">{errors.description}</span>}
+                  {errors.description && (
+                    <span className="error-text">{errors.description}</span>
+                  )}
                 </div>
 
                 {/* Budget */}
@@ -929,7 +957,9 @@ const PostProjectPage = () => {
                           placeholder="500"
                           className={errors.budget ? "error" : ""}
                           value={formData.minBudget}
-                          onChange={(e) => handleInputChange("minBudget", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("minBudget", e.target.value)
+                          }
                         />
                       </div>
                     </div>
@@ -943,12 +973,16 @@ const PostProjectPage = () => {
                           placeholder="2000"
                           className={errors.budget ? "error" : ""}
                           value={formData.maxBudget}
-                          onChange={(e) => handleInputChange("maxBudget", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("maxBudget", e.target.value)
+                          }
                         />
                       </div>
                     </div>
                   </div>
-                  {errors.budget && <span className="error-text">{errors.budget}</span>}
+                  {errors.budget && (
+                    <span className="error-text">{errors.budget}</span>
+                  )}
                 </div>
 
                 {/* Timeline */}
@@ -958,7 +992,9 @@ const PostProjectPage = () => {
                     id="timeline"
                     className={errors.timeline ? "error" : ""}
                     value={formData.timeline}
-                    onChange={(e) => handleInputChange("timeline", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("timeline", e.target.value)
+                    }
                   >
                     <option value="">Select timeline</option>
                     <option value="asap">ASAP (Less than 1 week)</option>
@@ -967,7 +1003,9 @@ const PostProjectPage = () => {
                     <option value="2-3months">2-3 months</option>
                     <option value="3+months">3+ months</option>
                   </select>
-                  {errors.timeline && <span className="error-text">{errors.timeline}</span>}
+                  {errors.timeline && (
+                    <span className="error-text">{errors.timeline}</span>
+                  )}
                 </div>
 
                 {/* Experience Level */}
@@ -980,7 +1018,9 @@ const PostProjectPage = () => {
                         name="experienceLevel"
                         value="entry"
                         checked={formData.experienceLevel === "entry"}
-                        onChange={(e) => handleInputChange("experienceLevel", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("experienceLevel", e.target.value)
+                        }
                       />
                       Entry Level ($10-30/hr)
                     </label>
@@ -990,7 +1030,9 @@ const PostProjectPage = () => {
                         name="experienceLevel"
                         value="intermediate"
                         checked={formData.experienceLevel === "intermediate"}
-                        onChange={(e) => handleInputChange("experienceLevel", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("experienceLevel", e.target.value)
+                        }
                       />
                       Intermediate ($30-60/hr)
                     </label>
@@ -1000,7 +1042,9 @@ const PostProjectPage = () => {
                         name="experienceLevel"
                         value="expert"
                         checked={formData.experienceLevel === "expert"}
-                        onChange={(e) => handleInputChange("experienceLevel", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("experienceLevel", e.target.value)
+                        }
                       />
                       Expert ($60+/hr)
                     </label>
@@ -1015,7 +1059,9 @@ const PostProjectPage = () => {
                       <input
                         type="checkbox"
                         checked={formData.featured}
-                        onChange={(e) => handleInputChange("featured", e.target.checked)}
+                        onChange={(e) =>
+                          handleInputChange("featured", e.target.checked)
+                        }
                       />
                       Make this project featured (+$19)
                     </label>
@@ -1023,7 +1069,9 @@ const PostProjectPage = () => {
                       <input
                         type="checkbox"
                         checked={formData.urgent}
-                        onChange={(e) => handleInputChange("urgent", e.target.checked)}
+                        onChange={(e) =>
+                          handleInputChange("urgent", e.target.checked)
+                        }
                       />
                       Mark as urgent (+$9)
                     </label>
@@ -1036,13 +1084,19 @@ const PostProjectPage = () => {
                     <h4>Additional Costs</h4>
                     {formData.featured && <p>Featured listing: $19</p>}
                     {formData.urgent && <p>Urgent marking: $9</p>}
-                    <p className="total">Total additional cost: ${getAdditionalCost()}</p>
+                    <p className="total">
+                      Total additional cost: ${getAdditionalCost()}
+                    </p>
                   </div>
                 )}
 
                 {/* Submit Button */}
                 <div className="submit-section">
-                  <button type="submit" className="btn-submit" disabled={isSubmitting}>
+                  <button
+                    type="submit"
+                    className="btn-submit"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? (
                       <>
                         <div className="spinner"></div>
@@ -1055,7 +1109,10 @@ const PostProjectPage = () => {
                       </>
                     )}
                   </button>
-                  <p className="agreement">By posting, you agree to our Terms of Service and Privacy Policy</p>
+                  <p className="agreement">
+                    By posting, you agree to our Terms of Service and Privacy
+                    Policy
+                  </p>
                 </div>
               </div>
             </div>
@@ -1112,7 +1169,7 @@ const PostProjectPage = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostProjectPage
+export default PostProjectPage;

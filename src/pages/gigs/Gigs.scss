@@ -215,52 +215,69 @@
                     }
                 }
             }
-            .right {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                position: relative;
-                .sortBy {
-                    color: #888;
-                    font-weight: 400;
-                }
-                .sortType {
-                    font-weight: 600;
-                    color: #22c55e;
-                }
-                img {
-                    width: 22px;
-                    cursor: pointer;
-                    filter: brightness(0.7);
-                    transition: filter 0.2s;
-                    &:hover {
-                        filter: brightness(1);
-                    }
-                }
-                .rightMenu {
-                    padding: 10px 16px;
-                    background: #fff;
-                    border-radius: 8px;
-                    border: 1px solid #e0f2e0;
-                    position: absolute;
-                    top: 36px;
-                    right: 0;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 8px;
-                    color: #777;
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-                    z-index: 10;
-                    span {
-                        cursor: pointer;
-                        transition: color 0.2s;
-                        &:hover {
-                            color: #22c55e;
-                        }
-                    }
-                }
-            }
+        .sort-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .sort-label {
+    font-weight: 500;
+    color: #444;
+  }
+
+  .sort-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s ease;
+
+    img {
+      width: 12px;
+      height: 12px;
+    }
+
+    .sort-selected {
+      font-weight: 500;
+      color: #1dbf73; // highlight selected
+    }
+
+    .sort-options {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      z-index: 20;
+      min-width: 160px;
+      overflow: hidden;
+
+      span {
+        display: block;
+        padding: 10px 12px;
+        cursor: pointer;
+        color: #333;
+        transition: background 0.2s, color 0.2s;
+
+        &:hover {
+          background-color: #1dbf73;
+          color: white;
         }
+      }
+    }
+  }
+}
+        }
+
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));

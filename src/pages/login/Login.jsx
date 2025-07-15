@@ -5,6 +5,7 @@ import { useToast } from "../../hooks/useToast";
 import { login } from "../../api/auth";
 import "./Login.scss";
 import { useRefresh } from "@/contexts/refreshcontext";
+import { Link } from "react-router-dom";
 
 function Login() {
   const { refreshKey } = useRefresh();
@@ -156,7 +157,7 @@ function Login() {
 
           <div className="form-footer">
             <p>
-              Don't have an account? <a href="/signup">Sign up here</a>
+              Don't have an account? <Link to="/register">Sign up here</Link>
             </p>
           </div>
         </form>

@@ -12,6 +12,9 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Findjob from "./pages/findjob/Findjob";
 import Postjob from "./pages/postjob/Postjob";
+import PostedJobs from "./pages/Postedjobs/PostedJobs";
+import BrowseJobsPage from "./pages/Browsejobs/Browsejobspage";
+import NotFound from "./pages/Route404/NotFound";
 
 import {
   createBrowserRouter,
@@ -108,6 +111,15 @@ function App() {
           element: <Postjob />,
         },
         {
+          path: "/PostedJobs",
+          element: <PostedJobs />,
+        },
+        {
+          path: "/BrowseJobsPage",
+          element: <BrowseJobsPage />,
+        },
+
+        {
           path: "/register",
           element: <Register />,
         },
@@ -138,6 +150,11 @@ function App() {
         {
           path: "/about",
           element: <About />,
+        },
+
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

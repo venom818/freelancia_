@@ -473,6 +473,7 @@ export const gigs = [
     desc: "I will create professional Logo for you.(Monogram, Negative Space and many more.",
     price: 59,
     username: "Sonu Nigam",
+    category:"voiceover"
   },
   {
     id: 2,
@@ -482,6 +483,7 @@ export const gigs = [
     price: 79,
 
     username: "Atif Aslam",
+    category:"art and voice over"
   },
   {
     id: 3,
@@ -491,6 +493,7 @@ export const gigs = [
     price: 112,
    
     username: "Venom Gahatraj",
+    category:"ui/ux designer"
   },
   {
     id: 4,
@@ -500,6 +503,7 @@ export const gigs = [
     price: 99,
 
     username: "Thakur Kunwar",
+    category: "voiceover"
   },
   {
     id: 5,
@@ -509,6 +513,7 @@ export const gigs = [
     price: 59,
  
     username: "Chris Hemsworth",
+    category:"video editing"
   },
   {
     id: 6,
@@ -518,6 +523,7 @@ export const gigs = [
     price: 79,
     
     username: "Robert Downey Jr.",
+    category:"AI,Video editing"
   },
   {
     id: 7,
@@ -527,6 +533,7 @@ export const gigs = [
     price: 89,
     
     username: "Scarlette Johansson",
+    category:"AI"
   },
   {
     id: 8,
@@ -535,5 +542,6 @@ export const gigs = [
     desc: "I can create an awsome looking image .",
     price: 110,
     username: "Amber Heard",
+    category:"AI "
   },
 ];
